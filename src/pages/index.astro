@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdRm9xKDPMLz2kJFfnQ4sviVyZFayhNka-ChAM_WjEA2N6tUA/viewform";
+---
+
+<Layout
+  title="RevAgentic | Find the Revenue That's Already in Your Business"
+  description="RevAgentic deploys AI-native revenue systems for gyms and health clubs. We find where leads are lost, members disengage, and staff time is wasted — then build the systems to fix it."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-brand-border bg-white/95 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <span class="font-display font-bold text-base text-brand-navy tracking-tight">revagentic<span class="text-brand-purple">.ai</span></span>
+      <div class="hidden md:flex items-center gap-8 text-sm text-brand-muted font-body">
+        <a href="#how-it-works" class="hover:text-brand-navy transition-colors">How It Works</a>
+        <a href="#systems" class="hover:text-brand-navy transition-colors">Systems</a>
+      </div>
+      <a
+        href={FORM}
+        target="_blank"
+        class="bg-brand-purple text-white font-display font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all"
+      >
+        Book a Diagnostic
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col justify-center pt-16 px-6">
+    <div class="max-w-6xl mx-auto w-full py-24 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">For Health and Fitness Operators</p>
+        <h1 class="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight mb-6 text-brand-navy">
+          Find the revenue that's already in your business.
+        </h1>
+        <p class="text-brand-muted text-lg font-body leading-relaxed mb-10">
+          We find where leads are lost, members disengage, and staff time is wasted — then build the systems to fix it.
+        </p>
+        <a
+          href={FORM}
+          target="_blank"
+          class="inline-flex items-center gap-2 bg-brand-purple text-white font-display font-semibold text-base px-8 py-4 rounded-lg hover:brightness-110 transition-all"
+        >
+          Start with a Revenue Systems Diagnostic →
+        </a>
+      </div>
+
+      <!-- Network graphic -->
+      <div class="hidden md:flex items-center justify-center">
+        <div class="relative w-80 h-80">
+          <div class="absolute inset-0 rounded-full bg-purple-50 border border-purple-100"></div>
+          <div class="absolute inset-8 rounded-full bg-blue-50 border border-blue-100"></div>
+          <div class="absolute inset-16 rounded-full bg-indigo-50 border border-indigo-100"></div>
+          {[...Array(12)].map((_, i) => (
+            <div
+              class="absolute w-2.5 h-2.5 rounded-full bg-brand-purple/40"
+              style={`top: ${50 + 44 * Math.sin(i * Math.PI / 6)}%; left: ${50 + 44 * Math.cos(i * Math.PI / 6)}%; transform: translate(-50%, -50%)`}
+            ></div>
+          ))}
+          {[...Array(8)].map((_, i) => (
+            <div
+              class="absolute w-2 h-2 rounded-full bg-brand-cyan/60"
+              style={`top: ${50 + 28 * Math.sin(i * Math.PI / 4)}%; left: ${50 + 28 * Math.cos(i * Math.PI / 4)}%; transform: translate(-50%, -50%)`}
+            ></div>
+          ))}
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div class="w-8 h-8 rounded-full bg-brand-cyan shadow-lg shadow-brand-cyan/30"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEM ROW -->
+  <section class="px-6 py-16 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8 text-sm text-brand-muted font-body">
+      {[
+        "Most operators don't have a lead problem. They have a follow-up problem.",
+        "Most operators don't have a membership problem. They have an onboarding and engagement problem.",
+        "Most operators don't need more dashboards. They need systems that trigger action."
+      ].map(item => (
+        <p class="leading-relaxed">{item}</p>
+      ))}
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="px-6 py-20 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-6 mb-8">
+        {[
+          { stat: "67%", color: "text-brand-purple", label: "Lost Leads", sub: "never contacted within 5 min" },
+          { stat: "42%", color: "text-brand-cyan", label: "Missed Trials", sub: "no-shows with zero follow-up" },
+          { stat: "29%", color: "text-brand-navy", label: "Failed Onboarding", sub: "quit within 60 days" },
+          { stat: "23%", color: "text-brand-blue", label: "At-Risk Members", sub: "disengaged with no intervention" }
+        ].map(item => (
+          <div class="bg-white border border-brand-border rounded-xl p-6">
+            <p class={`font-display font-extrabold text-5xl mb-3 ${item.color}`}>{item.stat}</p>
+            <p class="text-brand-navy font-body font-semibold text-sm mb-1">{item.label}</p>
+            <p class="text-brand-muted font-body text-xs">{item.sub}</p>
+          </div>
+        ))}
+      </div>
+      <div class="bg-white border border-brand-border rounded-xl p-6 text-center">
+        <p class="font-display font-bold text-brand-navy text-lg">Your club runs on people. It should also run on systems that don't sleep.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE SYSTEMS -->
+  <section id="systems" class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-2 text-brand-navy">Example Systems We Deploy</h2>
+      <p class="text-brand-muted font-body mb-12">Concrete, operational automation built for fitness operators.</p>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        {[
+          {
+            title: "Lead Reactivation Engine",
+            items: ["How to engage cold leads", "Structured SMS/email follow-ups", "Builds trust and conversation"]
+          },
+          {
+            title: "No-Show Recovery Flow",
+            items: ["Collects feedback", "Continues engagement", "Escalates to staff when needed"]
+          },
+          {
+            title: "Onboarding Momentum System",
+            items: ["Guides early habits", "Reinforces habit formation", "Improves early engagement"]
+          }
+        ].map(item => (
+          <div class="bg-brand-bg border border-brand-border rounded-xl p-6">
+            <h3 class="font-display font-semibold text-brand-navy mb-4">{item.title}</h3>
+            <ul class="space-y-2">
+              {item.items.map(li => (
+                <li class="flex items-start gap-2 text-brand-muted font-body text-sm">
+                  <span class="text-brand-purple mt-0.5">→</span>
+                  {li}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <div class="text-center">
+        <a href={FORM} target="_blank" class="inline-flex items-center gap-2 bg-brand-purple text-white font-display font-semibold px-8 py-4 rounded-lg hover:brightness-110 transition-all">
+          Book a Revenue Audit →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT CHANGES -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-brand-navy">What Changes After RevAgentic</h2>
+      <p class="text-brand-muted font-body mb-12">When revenue systems are in place, these become the new normal.</p>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        {[
+          "Every lead receives a response",
+          "Onboarding becomes structured",
+          "At-risk members get flagged earlier",
+          "Upsell opportunities become visible",
+          "Staff spend less time on manual follow-up",
+          "Revenue operations become more predictable"
+        ].map(item => (
+          <div class="flex items-center gap-3 bg-white border border-brand-border rounded-lg px-5 py-4">
+            <span class="text-brand-purple text-lg">✓</span>
+            <p class="text-brand-navy font-body text-sm">{item}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border bg-brand-navy text-white">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-cyan font-body font-semibold text-xs uppercase tracking-widest mb-4">How It Works</p>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { step: "01", title: "Revenue Systems Diagnostic", body: "A paid consulting sprint to find where revenue is leaking. Delivers a roadmap and opportunity map." },
+          { step: "02", title: "Agentic System Design", body: "Design the workflows, automations, and integrations that close the gaps." },
+          { step: "03", title: "Build, Deploy, Refine", body: "Implementation and ongoing optimization." }
+        ].map(item => (
+          <div>
+            <p class="font-display font-black text-4xl text-brand-cyan/40 mb-4">{item.step}</p>
+            <h3 class="font-display font-bold text-white mb-3">{item.title}</h3>
+            <p class="text-gray-400 font-body text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IT'S FOR -->
+  <section class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Who It's For</p>
+        <h2 class="font-display font-bold text-4xl mb-8 text-brand-navy">Built for operators who want systems, not slides.</h2>
+        <ul class="space-y-3">
+          {[
+            "Single location gym operators",
+            "Independent clubs scaling beyond founder-led sales",
+            "Fitness brands with manual sales processes",
+            "Operators with poor lead follow-up",
+            "Diagnosed with retention leaks",
+            "Teams that need a practical AI partner"
+          ].map(item => (
+            <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+              <span class="text-brand-purple mt-0.5">→</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="bg-brand-bg border border-brand-border rounded-xl p-8">
+        <p class="text-brand-muted font-body italic mb-4 leading-relaxed text-lg">
+          "If you're looking for a keynote about the future of AI, that is not this. This is about building systems that work inside your business today."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOT A CONSULTING FIRM -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-8 text-brand-navy leading-tight">
+        Not a consulting firm.<br />Not a software shop.<br />Not an AI demo.
+      </h2>
+      <p class="text-brand-muted text-xl font-body leading-relaxed">
+        Most consulting firms hand over a deck. Most software firms hand over a product. Most AI shops hand over a demo. RevAgentic sits in the middle — starting with your business reality, not lean theater.
+      </p>
+    </div>
+  </section>
+
+  <!-- DIAGNOSTIC CTA -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-navy text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-6">
+        Find the revenue leaks in your business.
+      </h2>
+      <p class="text-gray-400 text-lg mb-10 leading-relaxed">
+        Start with a Revenue Systems Diagnostic and walk away with a clear plan for what to fix, what to automate, and where AI agents can create real lift.
+      </p>
+      <a
+        href={FORM}
+        target="_blank"
+        class="inline-block bg-brand-purple text-white font-display font-semibold text-lg px-10 py-5 rounded-lg hover:brightness-110 transition-all"
+      >
+        Book a Consultation →
+      </a>
+    </div>
+  </section>
+
+  <!-- FREE DIAGNOSTIC -->
+  <section class="px-6 py-24 border-t border-white/10 bg-brand-navy text-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-cyan font-body font-semibold text-xs uppercase tracking-widest mb-4">Free Diagnostic</p>
+        <h2 class="font-display font-bold text-4xl mb-6">Where is your business leaking revenue?</h2>
+        <p class="text-gray-400 font-body mb-8 leading-relaxed">Tell us about your operation and get a personalized report on where your club is losing leads, momentum, and member value.</p>
+        <a href={FORM} target="_blank" class="inline-flex items-center gap-2 border border-brand-cyan text-brand-cyan font-display font-semibold px-8 py-4 rounded-lg hover:bg-brand-cyan/10 transition-all">
+          Start the Diagnostic →
+        </a>
+      </div>
+      <ul class="space-y-3">
+        {[
+          "Answer questions about your operation",
+          "Get instant clarity on your biggest leaks",
+          "Receive a personalized revenue action plan",
+          "Explore unconsidered revenue paths and next steps"
+        ].map(item => (
+          <li class="flex items-start gap-3 bg-white/5 border border-white/10 rounded-lg px-5 py-4">
+            <span class="text-brand-cyan mt-0.5">→</span>
+            <p class="text-gray-300 font-body text-sm">{item}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="px-6 py-24 border-t border-brand-border bg-white text-center">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-muted text-sm font-body uppercase tracking-widest mb-12">Trusted by Fitness Operators</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        {[
+          { quote: "RevAgentic found revenue hiding in our follow-up gaps. We didn't even know we were losing leads we didn't know we were losing.", name: "Sarah Mitchell", title: "Gym Owner" },
+          { quote: "We tried three agencies before RevAgentic. They're the only ones who actually understand how a gym operates. The systems they built run themselves.", name: "James Park", title: "Multi-Location Operator" },
+          { quote: "The diagnostic alone was worth 5x what we paid. We finally had a clear picture of where members were falling off — and a plan to fix every gap.", name: "Maria Gonzalez", title: "Health Club Director" }
+        ].map(item => (
+          <div class="bg-brand-bg border border-brand-border rounded-xl p-8 text-left">
+            <p class="text-brand-muted font-body italic mb-6 leading-relaxed text-sm">"{item.quote}"</p>
+            <div>
+              <p class="text-brand-navy font-body font-semibold text-sm">{item.name}</p>
+              <p class="text-brand-muted font-body text-xs">{item.title}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- OPERATOR EXPERIENCE -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Why It Works</p>
+        <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">Operator Experience. Deployed as Systems.</h2>
+        <p class="text-brand-muted font-body leading-relaxed mb-8">
+          We don't advise from the outside. We understand the operational reality of running a club — and build revenue automation that fits how your business actually works.
+        </p>
+      </div>
+      <ul class="space-y-3 pt-8">
+        {[
+          "Built by operators with experience across the commercial fitness ecosystem",
+          "Background supporting multi-location club growth",
+          "Experience building lifestyle revenue systems, not just tech",
+          "Provide growth leadership at scale"
+        ].map(item => (
+          <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+            <span class="text-brand-purple mt-0.5">→</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-brand-muted text-sm">
+      <span class="font-display font-bold text-brand-navy">revagentic<span class="text-brand-purple">.ai</span></span>
+      <p>© {new Date().getFullYear()} RevAgentic. All rights reserved.</p>
+    </div>
+  </footer>
+
+</Layout>
