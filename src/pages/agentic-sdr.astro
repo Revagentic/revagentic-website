@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdRm9xKDPMLz2kJFfnQ4sviVyZFayhNka-ChAM_WjEA2N6tUA/viewform";
+const CONTACT = "mailto:hello@revagentic.ai";
+
+const painCards = [
+  "Slow response times",
+  "Missed follow-up",
+  "No qualification",
+  "No visibility into the funnel",
+  "Manual chaos"
+];
+
+const serviceSteps = [
+  {
+    step: "01",
+    title: "Capture",
+    body: "Leads come in from forms, landing pages, paid campaigns, inbound inquiries, or existing lists."
+  },
+  {
+    step: "02",
+    title: "Respond",
+    body: "The system replies immediately by email, SMS, or both, based on your workflow."
+  },
+  {
+    step: "03",
+    title: "Qualify",
+    body: "It asks the right questions, gathers structured information, and determines intent level."
+  },
+  {
+    step: "04",
+    title: "Nurture",
+    body: "It follows up automatically until the lead books, replies, converts, or clearly drops out."
+  },
+  {
+    step: "05",
+    title: "Route",
+    body: "Hot leads get routed to the right person, CRM stage, or next action."
+  },
+  {
+    step: "06",
+    title: "Learn",
+    body: "You get visibility into response patterns, bottlenecks, and performance over time."
+  }
+];
+
+const deliverables = [
+  "Lead capture workflow design",
+  "Automated follow-up flows",
+  "Email and SMS sequencing",
+  "Qualification logic",
+  "Routing rules",
+  "CRM integration or lightweight custom CRM layer",
+  "Dashboard visibility into lead activity",
+  "Handoff logic for sales staff",
+  "Reporting on speed-to-lead and funnel movement",
+  "Ongoing refinement based on real behavior"
+];
+
+const outcomes = [
+  "Faster response times",
+  "More conversations started",
+  "Fewer leads ignored",
+  "More booked appointments",
+  "Better use of paid traffic",
+  "Cleaner sales operations"
+];
+
+const oldWay = [
+  "Inbox-driven",
+  "Human memory dependent",
+  "Slow",
+  "Inconsistent",
+  "Impossible to scale",
+  "Poor attribution"
+];
+
+const revagenticWay = [
+  "Instant",
+  "Structured",
+  "Persistent",
+  "Trackable",
+  "Scalable",
+  "Connected to revenue outcomes"
+];
+
+const lifecycleLinks = [
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/custom-crm", label: "Custom CRM" },
+  { href: "/revenue-recovery", label: "Revenue Recovery" }
+];
+
+const useCases = [
+  "Gyms and health clubs",
+  "Service businesses with slow inbound follow-up",
+  "Operators running paid lead gen",
+  "Teams buried in manual CRM work",
+  "Businesses with no visibility into lead response quality"
+];
+---
+
+<Layout
+  title="Agentic SDR | RevAgentic"
+  description="Never lose a lead to slow follow-up again. RevAgentic builds agentic lead follow-up systems that respond fast, qualify prospects, nurture intent, and move people toward conversion."
+>
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-brand-border bg-white/95 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="font-display font-bold text-base text-brand-navy tracking-tight">revagentic<span class="text-brand-purple">.ai</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-brand-muted font-body">
+        <a href="#how-it-works" class="hover:text-brand-navy transition-colors">How It Works</a>
+        <a href="#what-you-get" class="hover:text-brand-navy transition-colors">What You Get</a>
+      </div>
+      <a
+        href={FORM}
+        target="_blank"
+        class="bg-brand-purple text-white font-display font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all"
+      >
+        Get Your Revenue Systems Diagnostic
+      </a>
+    </div>
+  </nav>
+
+  <section class="min-h-screen flex flex-col justify-center pt-16 px-6">
+    <div class="max-w-6xl mx-auto w-full py-24 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Agentic SDR Systems</p>
+        <h1 class="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight mb-6 text-brand-navy">
+          Never lose a lead to slow follow-up again
+        </h1>
+        <p class="text-brand-muted text-lg font-body leading-relaxed mb-10">
+          RevAgentic builds agentic lead follow-up systems that respond fast, qualify prospects, nurture intent, and move people toward the next step, without relying on your staff to remember every task.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href={FORM}
+            target="_blank"
+            class="inline-flex items-center justify-center gap-2 bg-brand-purple text-white font-display font-semibold text-base px-8 py-4 rounded-lg hover:brightness-110 transition-all"
+          >
+            Get Your Revenue Systems Diagnostic
+          </a>
+          <a
+            href={CONTACT}
+            class="inline-flex items-center justify-center gap-2 border border-brand-border bg-white text-brand-navy font-display font-semibold text-base px-8 py-4 rounded-lg hover:border-brand-purple hover:text-brand-purple transition-all"
+          >
+            Contact RevAgentic
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center justify-center">
+        <div class="grid grid-cols-2 gap-4 w-full max-w-md">
+          {[
+            { title: "Speed-to-Lead", copy: "< 5 min response" },
+            { title: "Qualification", copy: "Structured intake" },
+            { title: "Follow-Up", copy: "Email + SMS sequences" },
+            { title: "Routing", copy: "Sales-ready handoff" }
+          ].map((item, index) => (
+            <div class={`border border-brand-border rounded-xl p-6 ${index % 2 === 0 ? 'bg-white' : 'bg-brand-bg'}`}>
+              <p class="text-brand-muted font-body text-xs uppercase tracking-widest mb-3">{item.title}</p>
+              <p class="font-display font-bold text-brand-navy text-2xl leading-tight">{item.copy}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-brand-navy">What&apos;s costing you right now</h2>
+      <p class="text-brand-muted font-body text-lg leading-relaxed max-w-3xl mb-12">
+        Most businesses do not have a lead generation problem. They have a lead management problem.
+      </p>
+
+      <div class="grid md:grid-cols-5 gap-4 mb-10">
+        {painCards.map((item) => (
+          <div class="bg-brand-bg border border-brand-border rounded-xl p-6">
+            <p class="font-display font-semibold text-brand-navy leading-snug">{item}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-brand-bg border border-brand-border rounded-xl p-6 text-center">
+        <p class="text-brand-muted font-body leading-relaxed">
+          Every hour of delay lowers the odds of conversion. Every missed touchpoint makes your paid traffic, referrals, and organic demand less valuable.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border bg-brand-navy text-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-white">How the service works</h2>
+      <p class="text-gray-400 font-body leading-relaxed max-w-3xl mb-12">
+        This is not a chatbot bolted onto your business. It is a working follow-up system designed around your funnel.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {serviceSteps.map((item) => (
+          <div>
+            <p class="font-display font-black text-4xl text-brand-cyan/40 mb-4">{item.step}</p>
+            <h3 class="font-display font-bold text-white mb-3">{item.title}</h3>
+            <p class="text-gray-400 font-body text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="what-you-get" class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-brand-navy">What you actually get</h2>
+      <p class="text-brand-muted font-body leading-relaxed max-w-3xl mb-12">
+        This is not theory, and it is not another bloated software stack. You get a working revenue system built around your business.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <div class="bg-brand-bg border border-brand-border rounded-xl p-8">
+          <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Deliverables</p>
+          <ul class="space-y-3">
+            {deliverables.map((item) => (
+              <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+                <span class="text-brand-purple mt-0.5">→</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-brand-navy border border-brand-navy rounded-xl p-8 text-white">
+          <p class="text-brand-cyan font-body font-semibold text-xs uppercase tracking-widest mb-4">Outcomes</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {outcomes.map((item) => (
+              <div class="bg-white/5 border border-white/10 rounded-lg px-5 py-4">
+                <p class="text-gray-300 font-body text-sm">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-12 text-brand-navy text-center">Why the old way breaks</h2>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white border border-brand-border rounded-xl p-8">
+          <p class="text-brand-muted text-sm font-body uppercase tracking-widest mb-6">Old way</p>
+          <ul class="space-y-3">
+            {oldWay.map((item) => (
+              <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+                <span class="text-brand-purple mt-0.5">→</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="bg-brand-navy border border-brand-navy rounded-xl p-8">
+          <p class="text-brand-cyan text-sm font-body uppercase tracking-widest mb-6">RevAgentic way</p>
+          <ul class="space-y-3">
+            {revagenticWay.map((item) => (
+              <li class="flex items-start gap-3 text-gray-300 font-body text-sm">
+                <span class="text-brand-cyan mt-0.5">→</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Lifecycle</p>
+        <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">This is just the first stage of the revenue system</h2>
+        <p class="text-brand-muted font-body leading-relaxed mb-8">
+          Agentic SDR solves the top-of-funnel problem, but that is only one part of the lifecycle.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 font-display font-bold text-brand-navy text-xl mb-8">
+          <span>Acquire</span>
+          <span class="text-brand-purple">→</span>
+          <span>Convert &amp; Retain</span>
+          <span class="text-brand-purple">→</span>
+          <span>Recover</span>
+        </div>
+
+        <p class="text-brand-muted font-body leading-relaxed mb-6">
+          Once a lead converts, RevAgentic helps you continue the journey:
+        </p>
+
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+            <span class="text-brand-purple mt-0.5">→</span>
+            Convert &amp; Retain with onboarding, engagement, and lifecycle communication
+          </li>
+          <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+            <span class="text-brand-purple mt-0.5">→</span>
+            Recover with reactivation, cancellation mitigation, and revenue recovery systems
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-brand-bg border border-brand-border rounded-xl p-8">
+        <p class="text-brand-muted text-sm font-body uppercase tracking-widest mb-6">Next system layers</p>
+        <div class="space-y-4">
+          {lifecycleLinks.map((item) => (
+            <a
+              href={item.href}
+              class="flex items-center justify-between bg-white border border-brand-border rounded-lg px-5 py-4 text-brand-navy font-body text-sm hover:border-brand-purple hover:text-brand-purple transition-all"
+            >
+              <span>{item.label}</span>
+              <span class="text-brand-purple">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-brand-navy">Where this works</h2>
+      <p class="text-brand-muted font-body mb-12">Built for operators who need response speed, consistency, and visibility without adding manual overhead.</p>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {useCases.map((item) => (
+          <div class="bg-white border border-brand-border rounded-xl p-6">
+            <p class="font-display font-semibold text-brand-navy mb-2">{item}</p>
+            <p class="text-brand-muted font-body text-sm leading-relaxed">
+              Structured lead follow-up keeps demand moving instead of letting it decay in inboxes and disconnected tools.
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="final-cta" class="px-6 py-24 border-t border-brand-border bg-brand-navy text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-6">
+        Want to see where your revenue system is leaking?
+      </h2>
+      <p class="text-gray-400 text-lg mb-10 leading-relaxed">
+        The Revenue Systems Diagnostic shows where leads are getting stuck, where follow-up is breaking, and what to fix first.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a
+          href={FORM}
+          target="_blank"
+          class="inline-flex items-center justify-center bg-brand-purple text-white font-display font-semibold text-lg px-10 py-5 rounded-lg hover:brightness-110 transition-all"
+        >
+          Get Your Revenue Systems Diagnostic
+        </a>
+        <a
+          href={CONTACT}
+          class="inline-flex items-center justify-center border border-brand-cyan text-brand-cyan font-display font-semibold text-lg px-10 py-5 rounded-lg hover:bg-brand-cyan/10 transition-all"
+        >
+          Contact RevAgentic
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-brand-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-brand-muted text-sm">
+      <a href="/" class="font-display font-bold text-brand-navy">revagentic<span class="text-brand-purple">.ai</span></a>
+      <p>© {new Date().getFullYear()} RevAgentic. All rights reserved.</p>
+    </div>
+  </footer>
+</Layout>
