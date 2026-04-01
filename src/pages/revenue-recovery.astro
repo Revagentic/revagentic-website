@@ -1,0 +1,290 @@
+---
+import Layout from '../layouts/Layout.astro';
+const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdRm9xKDPMLz2kJFfnQ4sviVyZFayhNka-ChAM_WjEA2N6tUA/viewform";
+const CONTACT = "mailto:hello@revagentic.ai";
+
+const stats = [
+  { stat: "<30%", label: "Average failed payment recovery rate without automation" },
+  { stat: "15–25%", label: "Re-engagement rate for lapsed members with a personalized win-back" },
+  { stat: "60–90 days", label: "Before a lapsed member joins a competitor" }
+];
+
+const streams = [
+  {
+    num: "01",
+    title: "Failed Payment Recovery",
+    body: "When a payment fails, the system triggers immediate, personalized outreach — not a generic billing notice, but a message that feels human. Consistent timing and the right tone recover significantly more than manual processes.",
+    sequence: [
+      "Immediate: Personalized payment notice with easy resolution link",
+      "48 hours: Follow-up with alternative payment option",
+      "5 days: Final outreach before membership pause"
+    ]
+  },
+  {
+    num: "02",
+    title: "Lapsed Member Win-Back",
+    body: "When a member's status moves to lapsed, the recovery sequence starts. A personal message acknowledging the gap. A relevant reason to return — not a discount blast. A follow-up. A final check-in. Sequenced and automatic.",
+    sequence: [
+      "Day 1: Personal acknowledgment message — no hard sell",
+      "Day 7: Relevant return offer based on member history",
+      "Day 21: Final check-in with low-friction re-entry option"
+    ]
+  },
+  {
+    num: "03",
+    title: "Dropped Trial Re-Engagement",
+    body: "Prospects who started a trial and didn't convert are your highest-intent leads. They already showed up — they just didn't commit. The re-engagement sequence follows up at the right intervals with messages that address the most common hesitations.",
+    sequence: [
+      "Day 3: Check-in on trial experience — open the conversation",
+      "Day 10: Address the most common objection for their profile",
+      "Day 21: Final offer with clear expiration"
+    ]
+  }
+];
+
+const deliverables = [
+  "Failed payment detection and automated recovery sequence (3-touch)",
+  "Lapsed member win-back sequence (personalized, not mass blast)",
+  "Dropped trial re-engagement sequence with objection-aware messaging",
+  "Revenue recovery dashboard (amounts outstanding, recovery rates, pipeline)",
+  "Monthly recovered revenue report",
+  "Integration with Custom CRM (signals feed automatically)"
+];
+
+const lifecycleLinks = [
+  { href: "/agentic-sdr", label: "Agentic SDR", desc: "Fills the pipeline with qualified, booked leads", stage: "Stage 01" },
+  { href: "/custom-crm", label: "Custom CRM", desc: "Sends lapsed and failed-payment signals to Recovery", stage: "Stage 02" }
+];
+---
+
+<Layout
+  title="Revenue Recovery | RevAgentic"
+  description="There's money in your business right now that you're not collecting. RevAgentic builds automated recovery systems for failed payments, lapsed members, and dropped trials."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-brand-border bg-white/95 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="font-display font-bold text-base text-brand-navy tracking-tight">revagentic<span class="text-brand-purple">.ai</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-brand-muted font-body">
+        <a href="/how-it-works" class="hover:text-brand-navy transition-colors">How It Works</a>
+        <a href="/agentic-sdr" class="hover:text-brand-navy transition-colors">Agentic SDR</a>
+        <a href="/custom-crm" class="hover:text-brand-navy transition-colors">Custom CRM</a>
+        <a href="/revenue-recovery" class="text-brand-navy font-medium transition-colors">Revenue Recovery</a>
+      </div>
+      <a href={FORM} target="_blank" class="bg-brand-purple text-white font-display font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all">
+        Book a Diagnostic
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-screen flex flex-col justify-center pt-16 px-6">
+    <div class="max-w-6xl mx-auto w-full py-24 grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Stage 03 — Recover</p>
+        <h1 class="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight mb-6 text-brand-navy">
+          There's money in your business right now that you're not collecting.
+        </h1>
+        <p class="text-brand-muted text-lg font-body leading-relaxed mb-10">
+          Lapsed members. Failed payments. Dropped trials. Revenue Recovery runs quietly in the background and brings it back — without awkward calls, mass blasts, or staff time.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href={FORM} target="_blank" class="inline-flex items-center justify-center gap-2 bg-brand-purple text-white font-display font-semibold text-base px-8 py-4 rounded-lg hover:brightness-110 transition-all">
+            Start with a Revenue Systems Diagnostic
+          </a>
+          <a href={CONTACT} class="inline-flex items-center justify-center gap-2 border border-brand-border bg-white text-brand-navy font-display font-semibold text-base px-8 py-4 rounded-lg hover:border-brand-purple hover:text-brand-purple transition-all">
+            Contact RevAgentic
+          </a>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center justify-center">
+        <div class="grid grid-cols-1 gap-4 w-full max-w-md">
+          {[
+            { title: "Failed Payments", copy: "Recovered automatically with 3-touch sequences" },
+            { title: "Lapsed Members", copy: "Win-back with personalized, timed outreach" },
+            { title: "Dropped Trials", copy: "Re-engaged before they choose a competitor" }
+          ].map((item) => (
+            <div class="bg-brand-bg border border-brand-border rounded-xl p-6 flex items-center gap-6">
+              <div class="w-2 h-10 rounded-full bg-brand-purple flex-shrink-0"></div>
+              <div>
+                <p class="text-brand-muted font-body text-xs uppercase tracking-widest mb-1">{item.title}</p>
+                <p class="font-display font-bold text-brand-navy leading-snug">{item.copy}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN -->
+  <section class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-brand-navy">Churn is visible. What you don't see is what it's costing you.</h2>
+      <p class="text-brand-muted font-body text-lg leading-relaxed max-w-3xl mb-12">
+        Every month, members lapse, payments fail, and prospects drop off after a trial. Most operators know this is happening. Almost none of them have a system that does anything about it — because it feels awkward to chase people, staff doesn't have time, and it's hard to know who to contact, when, and with what message.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        {stats.map((item) => (
+          <div class="bg-brand-bg border border-brand-border rounded-xl p-6">
+            <p class="font-display font-extrabold text-5xl text-brand-purple mb-3">{item.stat}</p>
+            <p class="text-brand-muted font-body text-sm leading-relaxed">{item.label}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-6 text-center">
+        <p class="font-display font-bold text-brand-navy text-lg">Revenue Recovery removes all three obstacles. It monitors for signals and acts on them automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COST OF INACTION -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Cost of Inaction</p>
+        <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">This revenue already exists. You just haven't collected it.</h2>
+        <p class="text-brand-muted font-body leading-relaxed mb-4">
+          If you have 200 active members and 5% monthly churn, you're losing 10 members a month. If your win-back rate with a proper recovery system is 20%, that's 2 members retained or recovered each month.
+        </p>
+        <p class="text-brand-muted font-body leading-relaxed">
+          At $100/month and 12-month retention, that's $2,400/month in recovered lifetime value — from members who already know you, already tried your service, and just needed the right reason to come back.
+        </p>
+      </div>
+      <div class="bg-white border border-brand-border rounded-xl p-8">
+        <p class="font-display font-bold text-brand-navy text-lg mb-4 leading-snug">
+          These are members you've already paid to acquire. Recovery costs a fraction of acquisition.
+        </p>
+        <p class="text-brand-muted font-body text-sm leading-relaxed">
+          The highest-ROI revenue in your business is the revenue already in your system that hasn't been collected yet. That's what Revenue Recovery goes after first.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE STREAMS -->
+  <section id="how-it-works" class="px-6 py-24 border-t border-brand-border bg-brand-navy text-white">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-cyan font-body font-semibold text-xs uppercase tracking-widest mb-4">How Revenue Recovery Works</p>
+      <h2 class="font-display font-bold text-4xl mb-4 text-white">Three recovery streams. All automatic.</h2>
+      <p class="text-gray-400 font-body leading-relaxed max-w-3xl mb-16">
+        Each stream targets a different type of lost revenue — running in parallel, without anyone managing them.
+      </p>
+
+      <div class="space-y-8">
+        {streams.map((stream) => (
+          <div class="grid md:grid-cols-2 gap-8 bg-white/5 border border-white/10 rounded-xl p-8">
+            <div>
+              <p class="font-display font-black text-4xl text-brand-cyan/40 mb-4">{stream.num}</p>
+              <h3 class="font-display font-bold text-white text-2xl mb-4">{stream.title}</h3>
+              <p class="text-gray-400 font-body text-sm leading-relaxed">{stream.body}</p>
+            </div>
+            <div>
+              <p class="text-brand-cyan font-body font-semibold text-xs uppercase tracking-widest mb-4">Sequence</p>
+              <ul class="space-y-3">
+                {stream.sequence.map((step) => (
+                  <li class="flex items-start gap-3 text-gray-300 font-body text-sm">
+                    <span class="text-brand-cyan mt-0.5">→</span>
+                    {step}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section id="what-you-get" class="px-6 py-24 border-t border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-4 text-brand-navy">What you actually get</h2>
+      <p class="text-brand-muted font-body leading-relaxed max-w-3xl mb-12">
+        Three automated recovery streams, full reporting on what's been recovered, and direct integration with your Custom CRM.
+      </p>
+
+      <div class="bg-brand-bg border border-brand-border rounded-xl p-8">
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-6">Deliverables</p>
+        <div class="grid md:grid-cols-2 gap-4">
+          {deliverables.map((item) => (
+            <div class="flex items-start gap-3 text-brand-muted font-body text-sm">
+              <span class="text-brand-purple mt-0.5">→</span>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFECYCLE -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">Lifecycle</p>
+        <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">Recovery only works when it has good data to work from.</h2>
+        <p class="text-brand-muted font-body leading-relaxed mb-6">
+          Revenue Recovery is Stage 3, but it runs on signals from Stage 2 — the Custom CRM. When the CRM tracks engagement and flags risk, Recovery knows who to target and when. Without that signal, recovery is guesswork. With it, it's a system.
+        </p>
+
+        <div class="flex flex-wrap items-center gap-4 font-display font-bold text-brand-navy text-xl">
+          <span class="text-brand-muted">Acquire</span>
+          <span class="text-brand-purple">→</span>
+          <span class="text-brand-muted">Convert &amp; Retain</span>
+          <span class="text-brand-purple">→</span>
+          <span>Recover</span>
+        </div>
+      </div>
+
+      <div class="bg-white border border-brand-border rounded-xl p-8">
+        <p class="text-brand-muted text-sm font-body uppercase tracking-widest mb-6">Connected system layers</p>
+        <div class="space-y-4">
+          {lifecycleLinks.map((item) => (
+            <a href={item.href} class="flex items-start justify-between bg-brand-bg border border-brand-border rounded-lg px-5 py-4 hover:border-brand-purple transition-all group">
+              <div>
+                <p class="text-brand-purple font-body text-xs uppercase tracking-widest mb-1 font-semibold">{item.stage}</p>
+                <p class="font-display font-semibold text-brand-navy group-hover:text-brand-purple transition-colors">{item.label}</p>
+                <p class="text-brand-muted font-body text-xs mt-1">{item.desc}</p>
+              </div>
+              <span class="text-brand-purple mt-1">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 py-24 border-t border-brand-border bg-brand-navy text-white">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-6">
+        Find out how much revenue is sitting in your system uncollected.
+      </h2>
+      <p class="text-gray-400 text-lg mb-10 leading-relaxed">
+        The diagnostic surfaces the number. Then we build the system to go get it.
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <a href={FORM} target="_blank" class="inline-flex items-center justify-center bg-brand-purple text-white font-display font-semibold text-lg px-10 py-5 rounded-lg hover:brightness-110 transition-all">
+          Start with a Revenue Systems Diagnostic
+        </a>
+        <a href={CONTACT} class="inline-flex items-center justify-center border border-brand-cyan text-brand-cyan font-display font-semibold text-lg px-10 py-5 rounded-lg hover:bg-brand-cyan/10 transition-all">
+          Contact RevAgentic
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-brand-muted text-sm">
+      <a href="/" class="font-display font-bold text-brand-navy">revagentic<span class="text-brand-purple">.ai</span></a>
+      <p>© {new Date().getFullYear()} RevAgentic. All rights reserved.</p>
+    </div>
+  </footer>
+
+</Layout>

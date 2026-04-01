@@ -1,0 +1,253 @@
+---
+import Layout from '../layouts/Layout.astro';
+const FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdRm9xKDPMLz2kJFfnQ4sviVyZFayhNka-ChAM_WjEA2N6tUA/viewform";
+
+const stages = [
+  {
+    num: "01",
+    label: "Acquire",
+    service: "Agentic SDR",
+    href: "/agentic-sdr",
+    body: "Turn inquiries into booked consultations without front desk involvement. The Agentic SDR responds in seconds, qualifies every lead, and books consultations 24 hours a day.",
+    leaks: [
+      "Leads who inquired but never heard back fast enough",
+      "Prospects who needed 4–5 touches but only got one",
+      "Walk-ins and referrals that fell off because no one had time"
+    ]
+  },
+  {
+    num: "02",
+    label: "Convert & Retain",
+    service: "Custom CRM",
+    href: "/custom-crm",
+    body: "The connective tissue of the entire system. Built on Airtable + Claude. Purpose-built for fitness operators. Onboards, retains, and flags at-risk members before they cancel.",
+    leaks: [
+      "New members who never got a proper first-30-days experience",
+      "At-risk members who churned without a single automated flag",
+      "Staff spending hours on follow-up that should be automatic"
+    ]
+  },
+  {
+    num: "03",
+    label: "Recover",
+    service: "Revenue Recovery",
+    href: "/revenue-recovery",
+    body: "There's revenue sitting in your business right now that you're not collecting. Lapsed members. Failed payments. Dropped trials. Recovery runs in the background and brings it back.",
+    leaks: [
+      "Failed payments that go unrecovered",
+      "Lapsed members who would re-engage with the right message",
+      "Dropped trials that cost you the acquisition spend with nothing to show"
+    ]
+  }
+];
+
+const steps = [
+  {
+    step: "01",
+    title: "Revenue Systems Diagnostic",
+    body: "We audit your current stack, map your revenue lifecycle, and surface exactly where you're leaking leads, members, and money. Clear roadmap before we touch anything."
+  },
+  {
+    step: "02",
+    title: "Agentic System Design",
+    body: "Based on the diagnostic, we design the system — which stages to address first, what to replace, what to build, and how everything connects."
+  },
+  {
+    step: "03",
+    title: "Build, Deploy, Refine",
+    body: "We implement the system, run it through real-world conditions, and refine it until it's running without intervention. You get a system, not a slide deck."
+  }
+];
+---
+
+<Layout
+  title="How It Works | RevAgentic"
+  description="RevAgentic installs a connected three-stage revenue system — Agentic SDR, Custom CRM, and Revenue Recovery — purpose-built for health and fitness operators."
+>
+
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 border-b border-brand-border bg-white/95 backdrop-blur-sm">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="/" class="font-display font-bold text-base text-brand-navy tracking-tight">revagentic<span class="text-brand-purple">.ai</span></a>
+      <div class="hidden md:flex items-center gap-8 text-sm text-brand-muted font-body">
+        <a href="/how-it-works" class="text-brand-navy font-medium transition-colors">How It Works</a>
+        <a href="/agentic-sdr" class="hover:text-brand-navy transition-colors">Agentic SDR</a>
+        <a href="/custom-crm" class="hover:text-brand-navy transition-colors">Custom CRM</a>
+        <a href="/revenue-recovery" class="hover:text-brand-navy transition-colors">Revenue Recovery</a>
+      </div>
+      <a href={FORM} target="_blank" class="bg-brand-purple text-white font-display font-semibold text-sm px-5 py-2.5 rounded-lg hover:brightness-110 transition-all">
+        Book a Diagnostic
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="min-h-[60vh] flex flex-col justify-center pt-16 px-6 border-b border-brand-border">
+    <div class="max-w-6xl mx-auto w-full py-24">
+      <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">The Revenue Lifecycle</p>
+      <h1 class="font-display font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight mb-6 text-brand-navy max-w-3xl">
+        Three systems. One complete revenue engine.
+      </h1>
+      <p class="text-brand-muted text-lg font-body leading-relaxed max-w-2xl">
+        Most fitness operators are patching holes with staff time and tools that don't talk to each other. RevAgentic installs a connected system that runs the full revenue lifecycle — without adding headcount.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROBLEM -->
+  <section class="px-6 py-24 border-b border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">You don't have a lead problem. You have a system problem.</h2>
+        <p class="text-brand-muted font-body leading-relaxed mb-4">
+          You've tried the CRMs. You've paid for the automations. You've hired staff to follow up. And you're still leaving money on the table at every stage.
+        </p>
+        <p class="text-brand-muted font-body leading-relaxed">
+          The reason isn't effort. It's architecture. Most operators are running three or four disconnected tools — none of them talking to each other. Leads fall through the gap. Members churn before anyone flags them. Revenue walks out quietly, one missed payment at a time.
+        </p>
+      </div>
+      <div class="bg-brand-bg border border-brand-border rounded-xl p-8">
+        <p class="font-display font-bold text-brand-navy text-lg leading-snug">
+          RevAgentic is built around a different premise: the revenue lifecycle is one connected system, and it should run that way.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREE STAGES -->
+  <section class="px-6 py-24 border-b border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">The Three Stages</p>
+      <h2 class="font-display font-bold text-4xl mb-16 text-brand-navy">Acquire. Convert & Retain. Recover.</h2>
+
+      <div class="space-y-6">
+        {stages.map((stage) => (
+          <div class="bg-white border border-brand-border rounded-xl p-8 grid md:grid-cols-2 gap-10">
+            <div>
+              <div class="flex items-center gap-4 mb-4">
+                <span class="font-display font-black text-4xl text-brand-purple/20">{stage.num}</span>
+                <div>
+                  <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest">{stage.label}</p>
+                  <h3 class="font-display font-bold text-xl text-brand-navy">{stage.service}</h3>
+                </div>
+              </div>
+              <p class="text-brand-muted font-body leading-relaxed mb-6">{stage.body}</p>
+              <a href={stage.href} class="inline-flex items-center gap-2 text-brand-purple font-display font-semibold text-sm hover:brightness-110 transition-all">
+                Learn more <span>→</span>
+              </a>
+            </div>
+            <div class="bg-brand-bg border border-brand-border rounded-lg p-6">
+              <p class="text-brand-muted font-body text-xs uppercase tracking-widest mb-4 font-semibold">What leaks without it</p>
+              <ul class="space-y-3">
+                {stage.leaks.map((leak) => (
+                  <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+                    <span class="text-brand-purple mt-0.5">→</span>
+                    {leak}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT CONNECTS -->
+  <section class="px-6 py-24 border-b border-brand-border bg-white">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">Each stage feeds the next.</h2>
+      <p class="text-brand-muted font-body leading-relaxed max-w-2xl mb-12">
+        The Agentic SDR fills the pipeline. The Custom CRM converts and retains. Revenue Recovery catches what slips through. None of them work at full power without the others — and that's the point.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-2">
+        {stages.map((stage) => (
+          <div class="bg-brand-bg border border-brand-border rounded-xl p-6">
+            <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-2">Stage {stage.num}</p>
+            <p class="font-display font-bold text-brand-navy text-xl mb-2">{stage.service}</p>
+            <p class="text-brand-muted font-body text-sm">{stage.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- HUBSPOT CALLOUT -->
+  <section class="px-6 py-24 border-b border-brand-border bg-brand-bg">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-brand-purple font-body font-semibold text-xs uppercase tracking-widest mb-4">The Teardown Approach</p>
+        <h2 class="font-display font-bold text-4xl mb-6 text-brand-navy">We don't just replace HubSpot. We fix what it was supposed to do.</h2>
+        <p class="text-brand-muted font-body leading-relaxed mb-4">
+          HubSpot promised you an automated revenue system. What you got was an expensive contact database with features you don't use and automations that still require someone to run them.
+        </p>
+        <p class="text-brand-muted font-body leading-relaxed mb-8">
+          We start with an audit. We map what your current stack is actually doing vs. what you're paying for. Then we rebuild the functional core as a purpose-built agentic system — at a fraction of the cost.
+        </p>
+        <a href="/custom-crm" class="inline-flex items-center gap-2 text-brand-purple font-display font-semibold text-sm hover:brightness-110 transition-all">
+          See the Custom CRM teardown approach →
+        </a>
+      </div>
+      <div class="bg-white border border-brand-border rounded-xl p-8">
+        <p class="text-brand-muted font-body text-xs uppercase tracking-widest mb-6 font-semibold">What the audit surfaces</p>
+        <ul class="space-y-3">
+          {[
+            "Automations that are set up but not firing",
+            "Sequences that were built but never turned on",
+            "Integrations paying monthly fees with zero usage",
+            "Manual workflows that should be automatic"
+          ].map(item => (
+            <li class="flex items-start gap-3 text-brand-muted font-body text-sm">
+              <span class="text-brand-purple mt-0.5">→</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="how-it-works" class="px-6 py-24 border-b border-brand-border bg-brand-navy text-white">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-brand-cyan font-body font-semibold text-xs uppercase tracking-widest mb-4">The Process</p>
+      <h2 class="font-display font-bold text-4xl mb-4 text-white">From diagnostic to running system.</h2>
+      <p class="text-gray-400 font-body leading-relaxed max-w-2xl mb-16">Three stages from first conversation to a revenue system that runs itself.</p>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {steps.map((item) => (
+          <div>
+            <p class="font-display font-black text-4xl text-brand-cyan/40 mb-4">{item.step}</p>
+            <h3 class="font-display font-bold text-white mb-3">{item.title}</h3>
+            <p class="text-gray-400 font-body text-sm leading-relaxed">{item.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="px-6 py-24 border-b border-brand-border bg-brand-bg text-center">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="font-display font-black text-4xl md:text-5xl mb-6 text-brand-navy leading-tight">
+        Find out where your revenue is leaking.
+      </h2>
+      <p class="text-brand-muted text-lg font-body leading-relaxed mb-10">
+        Start with the Revenue Systems Diagnostic. Walk away knowing exactly which stage of the lifecycle to fix first.
+      </p>
+      <a href={FORM} target="_blank" class="inline-block bg-brand-purple text-white font-display font-semibold text-lg px-10 py-5 rounded-lg hover:brightness-110 transition-all">
+        Book a Revenue Systems Diagnostic →
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-brand-border px-6 py-8 bg-white">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-brand-muted text-sm">
+      <a href="/" class="font-display font-bold text-brand-navy">revagentic<span class="text-brand-purple">.ai</span></a>
+      <p>© {new Date().getFullYear()} RevAgentic. All rights reserved.</p>
+    </div>
+  </footer>
+
+</Layout>
