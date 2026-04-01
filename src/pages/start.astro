@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const AIRTABLE_TOKEN = import.meta.env.AIRTABLE_TOKEN;
 ---
 
 <Layout
@@ -137,10 +136,7 @@ const AIRTABLE_TOKEN = import.meta.env.AIRTABLE_TOKEN;
 </div>
 </div>
 
-<script define:vars={{ AIRTABLE_TOKEN }}>
-const TOKEN=AIRTABLE_TOKEN;
-const BASE='app0cpbQjtdZh1sHT';
-const TABLE='tbluRGQFHiT1GySGo';
+<script>
 let memberVal='';
 
 document.querySelectorAll('#members .mopt').forEach(el => {
@@ -165,21 +161,17 @@ document.getElementById('sub').addEventListener('click', async function(){
   if(!validate())return;
   const btn=this;
   btn.disabled=true;btn.textContent='Sending...';
-  const today=new Date().toISOString().split('T')[0];
-  const fields={
-    'fldGGKln510zIwbEL':document.getElementById('name').value.trim(),
-    'fldI5kNvXERLJvdRj':document.getElementById('email').value.trim(),
-    'fld6fcrl4c8oSboZE':document.getElementById('phone').value.trim()||undefined,
-    'fld5DKwy8AIyOIruA':document.getElementById('biz').value.trim(),
-    'fldwMJ5TAWxZkNOjG':today,
-  };
-  if(memberVal)fields['fldWvDe5TH8LYlXTf']=memberVal;
-  Object.keys(fields).forEach(k=>{if(fields[k]===undefined)delete fields[k];});
   try{
-    const r=await fetch('https://api.airtable.com/v0/'+BASE+'/'+TABLE,{
+    const r=await fetch('/api/submit-start',{
       method:'POST',
-      headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},
-      body:JSON.stringify({fields})
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:document.getElementById('name').value.trim(),
+        email:document.getElementById('email').value.trim(),
+        phone:document.getElementById('phone').value.trim()||undefined,
+        biz:document.getElementById('biz').value.trim(),
+        members:memberVal||undefined,
+      })
     });
     if(r.ok){window.location.href='/thank-you';}
     else{btn.disabled=false;btn.textContent='Send me the diagnostic →';alert('Something went wrong. Please try again.');}
