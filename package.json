@@ -7,6 +7,9 @@
     "build": "astro build",
     "preview": "astro preview"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "dependencies": {
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^7.8.2",
