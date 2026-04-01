@@ -1,0 +1,377 @@
+---
+import Layout from '../layouts/Layout.astro';
+const AIRTABLE_TOKEN = import.meta.env.AIRTABLE_TOKEN;
+---
+
+<Layout
+  title="Revenue System Diagnostic — RevAgentic"
+  description="Complete your 8-step Revenue System Diagnostic and receive a personalized revenue report."
+>
+
+<style is:global>
+.diag-page {
+  --bg:#f4f4f0;--surface:#fff;--text:#0a1628;--text-2:#64748b;--text-3:#999993;--accent:#6d28d9;--accent-light:#f5f3ff;--border:#e5e3dc;--oh:#f5f4f0;--sb:#f5f3ff;--sc:#6d28d9;
+}
+.diag-page .shell{min-height:100vh;display:grid;grid-template-rows:auto auto 1fr auto}
+.diag-page .nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.diag-page .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+.diag-page .nav-logo span{color:var(--accent)}
+.diag-page .nav-badge{font-size:12px;font-weight:500;color:var(--accent);background:var(--accent-light);padding:4px 10px;border-radius:100px}
+.diag-page .pw{background:var(--surface);border-bottom:1px solid var(--border);padding:0.5rem 2rem 0.875rem}
+.diag-page .pm{display:flex;justify-content:space-between;padding:0.375rem 0 0.5rem}
+.diag-page .pl{font-size:12px;font-weight:500;color:var(--text-3);letter-spacing:0.04em;text-transform:uppercase}
+.diag-page .pp{font-size:12px;color:var(--text-3)}
+.diag-page .pt{height:3px;background:var(--border);border-radius:100px;overflow:hidden}
+.diag-page .pf{height:100%;background:var(--accent);border-radius:100px;transition:width 0.35s cubic-bezier(0.4,0,0.2,1)}
+.diag-page .main{display:flex;justify-content:center;align-items:flex-start;padding:3rem 1.5rem 5rem}
+.diag-page .card{width:100%;max-width:580px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.5rem;box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04)}
+.diag-page .step{display:none}
+.diag-page .step.active{display:block;animation:diag-up .25s cubic-bezier(.4,0,.2,1) both}
+@keyframes diag-up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.diag-page .ey{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.diag-page .hd{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.65rem;font-weight:700;line-height:1.2;letter-spacing:-.02em;margin-bottom:.5rem}
+.diag-page .sb{font-size:14px;color:var(--text-2);line-height:1.6;margin-bottom:2rem}
+.diag-page .dv{height:1px;background:var(--border);margin:1.75rem 0}
+.diag-page .fi{margin-bottom:1.25rem}
+.diag-page .lb{display:block;font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px}
+.diag-page .hi{display:block;font-size:12px;color:var(--text-3);margin-bottom:6px}
+.diag-page .rq{color:var(--accent)}
+.diag-page input[type=text],.diag-page input[type=email],.diag-page input[type=tel],.diag-page textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;padding:.7rem .875rem;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none}
+.diag-page input::placeholder,.diag-page textarea::placeholder{color:var(--text-3)}
+.diag-page input:focus,.diag-page textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,70,229,.1);background:#fff}
+.diag-page textarea{resize:vertical;min-height:90px;line-height:1.6}
+.diag-page .opts{display:flex;flex-direction:column;gap:8px}
+.diag-page .opts.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.diag-page .opt{display:flex;align-items:center;gap:10px;padding:.7rem .875rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
+.diag-page .opt:hover{background:var(--oh);border-color:#ccc}
+.diag-page .opt.sel{background:var(--sb);border-color:var(--sc)}
+.diag-page .dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;transition:all .15s;display:flex;align-items:center;justify-content:center;background:#fff}
+.diag-page .opt.sel .dot{border-color:var(--accent);background:var(--accent)}
+.diag-page .opt.sel .dot::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.diag-page .ot{font-size:14px;color:var(--text);line-height:1.3}
+.diag-page .sn{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;gap:12px}
+.diag-page .btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:.625rem 1.375rem;border-radius:8px;cursor:pointer;border:1px solid transparent;outline:none;transition:all .15s;line-height:1}
+.diag-page .bb{background:transparent;border-color:var(--border);color:var(--text-2)}
+.diag-page .bb:hover{border-color:#bbb;color:var(--text)}
+.diag-page .bn{background:var(--accent);color:#fff;border-color:var(--accent);margin-left:auto}
+.diag-page .bn:hover{background:#4338ca}
+.diag-page .bs{background:var(--accent);color:#fff;border-color:var(--accent);margin-left:auto;font-size:15px;font-weight:600;padding:.7rem 1.5rem}
+.diag-page .bs:hover{background:#4338ca}
+.diag-page .bs:disabled,.diag-page .bn:disabled{opacity:.4;cursor:not-allowed}
+.diag-page .em{font-size:12px;color:#dc2626;margin-top:4px;display:none}
+.diag-page .fi.er input,.diag-page .fi.er textarea{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.08)}
+.diag-page .fi.er .em{display:block}
+.diag-page .done{display:none;text-align:center;padding:2rem 0;animation:diag-up .3s both}
+.diag-page .done.show{display:block}
+.diag-page .cc{width:60px;height:60px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.diag-page .cc svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.diag-page .done h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:700;letter-spacing:-.02em;margin-bottom:.75rem}
+.diag-page .done p{font-size:14px;color:var(--text-2);line-height:1.7;max-width:360px;margin:0 auto}
+.diag-page .footer{border-top:1px solid var(--border);padding:1.25rem 2rem;text-align:center}
+.diag-page .footer p{font-size:12px;color:var(--text-3)}
+.diag-page .footer a{color:var(--text-3);text-decoration:none}
+.diag-page .footer a:hover{color:var(--accent)}
+@media(max-width:640px){.diag-page .card{padding:1.5rem;border-radius:12px}.diag-page .hd{font-size:1.35rem}.diag-page .opts.g2{grid-template-columns:1fr}.diag-page .main{padding:1.5rem 1rem 4rem}}
+</style>
+
+<div class="diag-page">
+<div class="shell">
+<nav class="nav">
+  <a class="nav-logo" href="/">Rev<span>Agentic</span></a>
+  <span class="nav-badge" id="nb">Step 1 of 8</span>
+</nav>
+<div class="pw">
+  <div class="pm"><span class="pl" id="pl">Getting started</span><span class="pp" id="pp">13%</span></div>
+  <div class="pt"><div class="pf" id="pf" style="width:12.5%"></div></div>
+</div>
+<main class="main">
+<div class="card">
+
+<div class="step active" data-step="1">
+  <div class="ey">Getting started</div>
+  <h1 class="hd">Who are we talking to?</h1>
+  <p class="sb">We'll use this to send you your personalized revenue report within 24 hours.</p>
+  <div class="fi" id="fn"><label class="lb">Full name <span class="rq">*</span></label><input type="text" id="name" placeholder="Sarah Mitchell"><div class="em">Please enter your name</div></div>
+  <div class="fi" id="fe"><label class="lb">Email address <span class="rq">*</span></label><input type="email" id="email" placeholder="sarah@yourclub.com"><div class="em">Please enter a valid email</div></div>
+  <div class="fi"><label class="lb">Phone number</label><input type="tel" id="phone" placeholder="+1 (614) 555-0100"></div>
+  <div class="sn"><button class="btn bn" id="btn1">Continue →</button></div>
+</div>
+
+<div class="step" data-step="2">
+  <div class="ey">Your operation</div>
+  <h1 class="hd">Tell us about your business.</h1>
+  <p class="sb">We'll tailor your diagnostic to your specific operation type.</p>
+  <div class="fi" id="fb"><label class="lb">Business name <span class="rq">*</span></label><input type="text" id="biz" placeholder="Iron & Oak Fitness"><div class="em">Please enter your business name</div></div>
+  <div class="fi"><label class="lb">City / Location</label><input type="text" id="loc" placeholder="Columbus, OH"></div>
+  <div class="fi"><label class="lb">Facility type</label>
+    <div class="opts g2" id="facilityType">
+      <div class="opt" data-v="Single Location Gym"><div class="dot"></div><span class="ot">Single location gym</span></div>
+      <div class="opt" data-v="Multi-Location Gym"><div class="dot"></div><span class="ot">Multi-location gym</span></div>
+      <div class="opt" data-v="Health Club"><div class="dot"></div><span class="ot">Health club</span></div>
+      <div class="opt" data-v="Boutique Studio"><div class="dot"></div><span class="ot">Boutique studio</span></div>
+      <div class="opt" data-v="MedSpa / Wellness"><div class="dot"></div><span class="ot">MedSpa / wellness</span></div>
+    </div>
+  </div>
+  <div class="sn"><button class="btn bb" id="bk2">← Back</button><button class="btn bn" id="btn2">Continue →</button></div>
+</div>
+
+<div class="step" data-step="3">
+  <div class="ey">Lead management</div>
+  <h1 class="hd">How do you handle new leads?</h1>
+  <p class="sb">Most operators lose 30–50% of leads in the first 24 hours. Let's find your gap.</p>
+  <div class="fi"><label class="lb">Active members (approximate)</label>
+    <div class="opts" id="activeMembers">
+      <div class="opt" data-v="Under 100"><div class="dot"></div><span class="ot">Under 100</span></div>
+      <div class="opt" data-v="100-300"><div class="dot"></div><span class="ot">100 – 300</span></div>
+      <div class="opt" data-v="300-750"><div class="dot"></div><span class="ot">300 – 750</span></div>
+      <div class="opt" data-v="750-2000"><div class="dot"></div><span class="ot">750 – 2,000</span></div>
+      <div class="opt" data-v="2000+"><div class="dot"></div><span class="ot">2,000+</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">How quickly do you respond to new leads?</label>
+    <div class="opts" id="leadResponseTime">
+      <div class="opt" data-v="Under 5 minutes"><div class="dot"></div><span class="ot">Under 5 minutes</span></div>
+      <div class="opt" data-v="5-30 minutes"><div class="dot"></div><span class="ot">5 – 30 minutes</span></div>
+      <div class="opt" data-v="Same day"><div class="dot"></div><span class="ot">Same day</span></div>
+      <div class="opt" data-v="Next day"><div class="dot"></div><span class="ot">Next day or longer</span></div>
+      <div class="opt" data-v="No system"><div class="dot"></div><span class="ot">We don't have a system</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">Who handles sales?</label>
+    <div class="opts g2" id="whoHandlesSales">
+      <div class="opt" data-v="Owner/Founder"><div class="dot"></div><span class="ot">Owner / founder</span></div>
+      <div class="opt" data-v="Dedicated Sales Staff"><div class="dot"></div><span class="ot">Dedicated sales staff</span></div>
+      <div class="opt" data-v="Front Desk"><div class="dot"></div><span class="ot">Front desk</span></div>
+      <div class="opt" data-v="No defined role"><div class="dot"></div><span class="ot">No defined role</span></div>
+      <div class="opt" data-v="Combination"><div class="dot"></div><span class="ot">Combination</span></div>
+    </div>
+  </div>
+  <div class="sn"><button class="btn bb" id="bk3">← Back</button><button class="btn bn" id="btn3">Continue →</button></div>
+</div>
+
+<div class="step" data-step="4">
+  <div class="ey">Trial & conversion</div>
+  <h1 class="hd">What happens after the trial?</h1>
+  <p class="sb">Conversion gaps are the most recoverable revenue in most operations.</p>
+  <div class="fi"><label class="lb">Trial no-show rate</label>
+    <div class="opts g2" id="noShowRate">
+      <div class="opt" data-v="Under 10%"><div class="dot"></div><span class="ot">Under 10%</span></div>
+      <div class="opt" data-v="10-25%"><div class="dot"></div><span class="ot">10 – 25%</span></div>
+      <div class="opt" data-v="25-50%"><div class="dot"></div><span class="ot">25 – 50%</span></div>
+      <div class="opt" data-v="Over 50%"><div class="dot"></div><span class="ot">Over 50%</span></div>
+      <div class="opt" data-v="Not tracked"><div class="dot"></div><span class="ot">Not tracked</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">Trial-to-member conversion rate</label>
+    <div class="opts g2" id="conversionRate">
+      <div class="opt" data-v="Under 20%"><div class="dot"></div><span class="ot">Under 20%</span></div>
+      <div class="opt" data-v="20-40%"><div class="dot"></div><span class="ot">20 – 40%</span></div>
+      <div class="opt" data-v="40-60%"><div class="dot"></div><span class="ot">40 – 60%</span></div>
+      <div class="opt" data-v="60-80%"><div class="dot"></div><span class="ot">60 – 80%</span></div>
+      <div class="opt" data-v="Over 80%"><div class="dot"></div><span class="ot">Over 80%</span></div>
+      <div class="opt" data-v="Not tracked"><div class="dot"></div><span class="ot">Not tracked</span></div>
+    </div>
+  </div>
+  <div class="sn"><button class="btn bb" id="bk4">← Back</button><button class="btn bn" id="btn4">Continue →</button></div>
+</div>
+
+<div class="step" data-step="5">
+  <div class="ey">Retention</div>
+  <h1 class="hd">How do you keep members?</h1>
+  <p class="sb">Most churn is predictable — and preventable with the right triggers.</p>
+  <div class="fi"><label class="lb">Structured onboarding sequence?</label>
+    <div class="opts" id="structuredOnboarding">
+      <div class="opt" data-v="Yes"><div class="dot"></div><span class="ot">Yes — formal onboarding program</span></div>
+      <div class="opt" data-v="Informal"><div class="dot"></div><span class="ot">Informal / ad hoc</span></div>
+      <div class="opt" data-v="No"><div class="dot"></div><span class="ot">No structured onboarding</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">Do you track at-risk members?</label>
+    <div class="opts" id="trackAtRisk">
+      <div class="opt" data-v="Yes"><div class="dot"></div><span class="ot">Yes — we have a system</span></div>
+      <div class="opt" data-v="Sometimes"><div class="dot"></div><span class="ot">Sometimes — inconsistently</span></div>
+      <div class="opt" data-v="No"><div class="dot"></div><span class="ot">No system in place</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">Automated win-back for lapsed members?</label>
+    <div class="opts g2" id="winBack">
+      <div class="opt" data-v="Yes"><div class="dot"></div><span class="ot">Yes, automated</span></div>
+      <div class="opt" data-v="No"><div class="dot"></div><span class="ot">No</span></div>
+    </div>
+  </div>
+  <div class="sn"><button class="btn bb" id="bk5">← Back</button><button class="btn bn" id="btn5">Continue →</button></div>
+</div>
+
+<div class="step" data-step="6">
+  <div class="ey">Tech stack</div>
+  <h1 class="hd">What are you currently running?</h1>
+  <p class="sb">Helps us understand what can be integrated vs. what needs replacing.</p>
+  <div class="fi"><label class="lb">Membership management software</label>
+    <div class="opts g2" id="membershipSoftware">
+      <div class="opt" data-v="Mindbody"><div class="dot"></div><span class="ot">Mindbody</span></div>
+      <div class="opt" data-v="ABC Fitness"><div class="dot"></div><span class="ot">ABC Fitness</span></div>
+      <div class="opt" data-v="Zen Planner"><div class="dot"></div><span class="ot">Zen Planner</span></div>
+      <div class="opt" data-v="ClubReady"><div class="dot"></div><span class="ot">ClubReady</span></div>
+      <div class="opt" data-v="Glofox"><div class="dot"></div><span class="ot">Glofox</span></div>
+      <div class="opt" data-v="PushPress"><div class="dot"></div><span class="ot">PushPress</span></div>
+      <div class="opt" data-v="Pike13"><div class="dot"></div><span class="ot">Pike13</span></div>
+      <div class="opt" data-v="Other"><div class="dot"></div><span class="ot">Other</span></div>
+      <div class="opt" data-v="None"><div class="dot"></div><span class="ot">None</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">SMS follow-up for leads?</label>
+    <div class="opts g2" id="smsFollowUp">
+      <div class="opt" data-v="Yes, automated"><div class="dot"></div><span class="ot">Yes, automated</span></div>
+      <div class="opt" data-v="Yes, manual"><div class="dot"></div><span class="ot">Yes, manual</span></div>
+      <div class="opt" data-v="No"><div class="dot"></div><span class="ot">No</span></div>
+      <div class="opt" data-v="Considering it"><div class="dot"></div><span class="ot">Considering it</span></div>
+    </div>
+  </div>
+  <div class="sn"><button class="btn bb" id="bk6">← Back</button><button class="btn bn" id="btn6">Continue →</button></div>
+</div>
+
+<div class="step" data-step="7">
+  <div class="ey">Revenue goals</div>
+  <h1 class="hd">What are you trying to fix?</h1>
+  <p class="sb">Be specific — this is how we identify your highest-leverage starting point.</p>
+  <div class="fi"><label class="lb">Primary goal in the next 90 days</label>
+    <div class="opts" id="primaryGoal">
+      <div class="opt" data-v="Increase new member volume"><div class="dot"></div><span class="ot">Increase new member volume</span></div>
+      <div class="opt" data-v="Improve trial conversion"><div class="dot"></div><span class="ot">Improve trial conversion</span></div>
+      <div class="opt" data-v="Reduce member churn"><div class="dot"></div><span class="ot">Reduce member churn</span></div>
+      <div class="opt" data-v="Reactivate lost members"><div class="dot"></div><span class="ot">Reactivate lost members</span></div>
+      <div class="opt" data-v="Reduce staff workload"><div class="dot"></div><span class="ot">Reduce staff workload on follow-up</span></div>
+      <div class="opt" data-v="Build predictable revenue"><div class="dot"></div><span class="ot">Build more predictable revenue</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">Biggest pain point — in your own words</label><span class="hi">Be as specific as possible. This shapes your report.</span><textarea id="pain" placeholder="What keeps you up at night about your revenue operations?"></textarea></div>
+  <div class="sn"><button class="btn bb" id="bk7">← Back</button><button class="btn bn" id="btn7">Continue →</button></div>
+</div>
+
+<div class="step" data-step="8">
+  <div class="ey">Almost done</div>
+  <h1 class="hd">One last thing.</h1>
+  <p class="sb">Helps us understand where you are in your decision process.</p>
+  <div class="fi"><label class="lb">Implementation timeline</label>
+    <div class="opts" id="implementationTimeline">
+      <div class="opt" data-v="Immediately"><div class="dot"></div><span class="ot">Ready now</span></div>
+      <div class="opt" data-v="Within 30 days"><div class="dot"></div><span class="ot">Within 30 days</span></div>
+      <div class="opt" data-v="1-3 months"><div class="dot"></div><span class="ot">1 – 3 months</span></div>
+      <div class="opt" data-v="3-6 months"><div class="dot"></div><span class="ot">3 – 6 months</span></div>
+      <div class="opt" data-v="Just researching"><div class="dot"></div><span class="ot">Just researching for now</span></div>
+    </div>
+  </div>
+  <div class="dv"></div>
+  <div class="fi"><label class="lb">What prompted this today?</label><textarea id="prompted" placeholder="A referral, something you read, a specific problem this week..."></textarea></div>
+  <div class="fi"><label class="lb">How did you hear about RevAgentic?</label>
+    <div class="opts g2" id="howHeard">
+      <div class="opt" data-v="Google Search"><div class="dot"></div><span class="ot">Google search</span></div>
+      <div class="opt" data-v="LinkedIn"><div class="dot"></div><span class="ot">LinkedIn</span></div>
+      <div class="opt" data-v="Referral"><div class="dot"></div><span class="ot">Referral</span></div>
+      <div class="opt" data-v="Email Outreach"><div class="dot"></div><span class="ot">Email outreach</span></div>
+      <div class="opt" data-v="Social Media"><div class="dot"></div><span class="ot">Social media</span></div>
+      <div class="opt" data-v="Industry Event"><div class="dot"></div><span class="ot">Industry event</span></div>
+      <div class="opt" data-v="Other"><div class="dot"></div><span class="ot">Other</span></div>
+    </div>
+  </div>
+  <div class="sn"><button class="btn bb" id="bk8">← Back</button><button class="btn bs" id="sub">Submit diagnostic →</button></div>
+</div>
+
+<div class="done" id="done">
+  <div class="cc"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+  <h2>You're in the system.</h2>
+  <p>We'll review your diagnostic and send a personalized revenue report within 24 hours. Look for an email from <strong>bill@revagentic.ai</strong>.</p>
+</div>
+
+</div>
+</main>
+<footer class="footer"><p>© 2026 RevAgentic · <a href="/">revagentic.ai</a></p></footer>
+</div>
+</div>
+
+<script define:vars={{ AIRTABLE_TOKEN }}>
+const TOKEN=AIRTABLE_TOKEN;
+const BASE='app0cpbQjtdZh1sHT';
+const TABLE='tbluRGQFHiT1GySGo';
+const T=8;
+const LB=['','Getting started','Your operation','Lead management','Trial & conversion','Retention','Tech stack','Revenue goals','Almost done'];
+let cur=1;const P={};
+
+// Option picking via event delegation
+document.querySelectorAll('.opts').forEach(group => {
+  group.addEventListener('click', function(e) {
+    const opt = e.target.closest('.opt');
+    if (!opt) return;
+    const groupId = this.id;
+    this.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+    opt.classList.add('sel');
+    P[groupId] = opt.dataset.v;
+  });
+});
+
+function ui(n){const p=Math.round(n/T*100);document.getElementById('pf').style.width=p+'%';document.getElementById('nb').textContent='Step '+n+' of '+T;document.getElementById('pl').textContent=LB[n]||'';document.getElementById('pp').textContent=p+'%';cur=n;}
+function show(n){document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));const t=document.querySelector('[data-step="'+n+'"]');if(t){t.classList.add('active');window.scrollTo(0,0);}ui(n);}
+function v1(){const n=document.getElementById('name').value.trim(),e=document.getElementById('email').value.trim();document.getElementById('fn').classList.toggle('er',!n);document.getElementById('fe').classList.toggle('er',!e||!e.includes('@'));return!!(n&&e&&e.includes('@'));}
+function v2(){const b=document.getElementById('biz').value.trim();document.getElementById('fb').classList.toggle('er',!b);return!!b;}
+function go(f){if(f===1&&!v1())return;if(f===2&&!v2())return;if(f<T)show(f+1);}
+function bk(f){if(f>1)show(f-1);}
+
+// Button event listeners
+document.getElementById('btn1').addEventListener('click', function(){ go(1); });
+document.getElementById('btn2').addEventListener('click', function(){ go(2); });
+document.getElementById('btn3').addEventListener('click', function(){ go(3); });
+document.getElementById('btn4').addEventListener('click', function(){ go(4); });
+document.getElementById('btn5').addEventListener('click', function(){ go(5); });
+document.getElementById('btn6').addEventListener('click', function(){ go(6); });
+document.getElementById('btn7').addEventListener('click', function(){ go(7); });
+document.getElementById('bk2').addEventListener('click', function(){ bk(2); });
+document.getElementById('bk3').addEventListener('click', function(){ bk(3); });
+document.getElementById('bk4').addEventListener('click', function(){ bk(4); });
+document.getElementById('bk5').addEventListener('click', function(){ bk(5); });
+document.getElementById('bk6').addEventListener('click', function(){ bk(6); });
+document.getElementById('bk7').addEventListener('click', function(){ bk(7); });
+document.getElementById('bk8').addEventListener('click', function(){ bk(8); });
+
+document.getElementById('sub').addEventListener('click', async function(){
+  const btn=this;btn.disabled=true;btn.textContent='Submitting...';
+  const today=new Date().toISOString().split('T')[0];
+  const fields={
+    'fldGGKln510zIwbEL':document.getElementById('name').value.trim(),
+    'fldI5kNvXERLJvdRj':document.getElementById('email').value.trim(),
+    'fld6fcrl4c8oSboZE':document.getElementById('phone').value.trim()||undefined,
+    'fld5DKwy8AIyOIruA':document.getElementById('biz').value.trim(),
+    'flde0hrK1tNcpxAkc':document.getElementById('loc').value.trim()||undefined,
+    'fld9oNCwaML7HDldF':P.facilityType,
+    'fldBUana2L3YvfjRR':P.leadResponseTime,
+    'fldhD8NjAsfdHs8rt':P.whoHandlesSales,
+    'flduuaDNZsz3D7gkk':P.noShowRate,
+    'fldcER1mDV9PcprDa':P.conversionRate,
+    'fld6PF6MYTKJPPvdr':P.structuredOnboarding,
+    'fldGQApZEJdlbUYj8':P.trackAtRisk,
+    'fldIirYQf61DBUJPa':P.winBack,
+    'fldWBgdl7SWj7cdu2':P.membershipSoftware,
+    'fldrhmOE2HwWtlVPe':P.smsFollowUp,
+    'fld0EWhoFekLSdGpG':P.primaryGoal,
+    'fldBmbrq8dxosdB9m':document.getElementById('pain').value.trim()||undefined,
+    'fldWuoMNKaJsaXGVz':P.implementationTimeline,
+    'fldAn7q3QTRrKJbqD':document.getElementById('prompted').value.trim()||undefined,
+    'fldvwKJrnXtk5nhyf':P.howHeard,
+    'fldwMJ5TAWxZkNOjG':today
+  };
+  Object.keys(fields).forEach(k=>{if(fields[k]===undefined)delete fields[k];});
+  try{
+    const r=await fetch('https://api.airtable.com/v0/'+BASE+'/'+TABLE,{method:'POST',headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},body:JSON.stringify({fields})});
+    if(r.ok){window.location.href='/diagnostic-complete';}
+    else{btn.disabled=false;btn.textContent='Submit diagnostic →';alert('Something went wrong. Please try again.');}
+  }catch(e){btn.disabled=false;btn.textContent='Submit diagnostic →';alert('Network error. Please try again.');}
+});
+</script>
+
+</Layout>

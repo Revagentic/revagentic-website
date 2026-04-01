@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Check Your Email — RevAgentic"
+  description="We've sent you a link to begin your Revenue System Diagnostic. Check your inbox."
+>
+
+<style is:global>
+.thankyou-page {
+  --bg:#f4f4f0;--surface:#fff;--text:#0a1628;--text-2:#64748b;--text-3:#94a3b8;--accent:#6d28d9;--accent-light:#f5f3ff;--cyan:#06b6d4;--border:#e5e3dc;
+}
+.thankyou-page .shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+.thankyou-page .nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.thankyou-page .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+.thankyou-page .nav-logo span{color:var(--accent)}
+.thankyou-page .main{display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem}
+.thankyou-page .content{width:100%;max-width:620px;text-align:center}
+.thankyou-page .status-wrap{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:2rem}
+.thankyou-page .pulse-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);animation:ty-pulse 2s ease-in-out infinite}
+@keyframes ty-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.thankyou-page .status-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.thankyou-page .email-icon{width:64px;height:64px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.thankyou-page .email-icon svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.thankyou-page h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.25rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;color:var(--text);margin-bottom:.875rem}
+.thankyou-page .sub{font-size:16px;color:var(--text-2);line-height:1.7;max-width:440px;margin:0 auto 2.5rem}
+.thankyou-page .timeline{text-align:left;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;background:var(--surface)}
+.thankyou-page .tl-item{display:flex;align-items:flex-start;gap:1rem;padding:1.125rem 1.5rem;border-bottom:1px solid var(--border)}
+.thankyou-page .tl-item:last-child{border-bottom:none}
+.thankyou-page .tl-num{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;margin-top:1px}
+.thankyou-page .tl-num.done{background:var(--accent-light);color:var(--accent)}
+.thankyou-page .tl-num.active{background:#ecfeff;color:var(--cyan)}
+.thankyou-page .tl-num.pending{background:var(--bg);color:var(--text-3);border:1px solid var(--border)}
+.thankyou-page .tl-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.thankyou-page .tl-desc{font-size:13px;color:var(--text-2);line-height:1.5}
+.thankyou-page .tl-time{font-size:11px;font-weight:500;color:var(--text-3);margin-top:3px;letter-spacing:.02em}
+.thankyou-page .cta-wrap{display:flex;flex-direction:column;align-items:center;gap:.875rem}
+.thankyou-page .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:15px;padding:.875rem 2rem;border-radius:8px;text-decoration:none;transition:filter .15s}
+.thankyou-page .btn-primary:hover{filter:brightness(1.1)}
+.thankyou-page .btn-ghost{font-size:13px;color:var(--text-3);text-decoration:none}
+.thankyou-page .btn-ghost:hover{color:var(--text-2)}
+.thankyou-page .footer{border-top:1px solid var(--border);padding:1.25rem 2rem;text-align:center}
+.thankyou-page .footer p{font-size:12px;color:var(--text-3)}
+.thankyou-page .footer a{color:var(--text-3);text-decoration:none}
+.thankyou-page .footer a:hover{color:var(--accent)}
+@media(max-width:640px){.thankyou-page h1{font-size:1.65rem}.thankyou-page .main{padding:2.5rem 1rem}.thankyou-page .tl-item{padding:.875rem 1rem}}
+</style>
+
+<div class="thankyou-page">
+<div class="shell">
+
+<nav class="nav">
+  <a class="nav-logo" href="/">revagentic<span>.ai</span></a>
+</nav>
+
+<main class="main">
+  <div class="content">
+
+    <div class="status-wrap">
+      <div class="pulse-dot"></div>
+      <span class="status-text">Submission received</span>
+    </div>
+
+    <div class="email-icon">
+      <svg viewBox="0 0 24 24">
+        <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+        <polyline points="2,4 12,13 22,4"></polyline>
+      </svg>
+    </div>
+
+    <h1>Check your email to start the diagnostic.</h1>
+    <p class="sub">We've sent you a link to begin your Revenue System Diagnostic. Check your inbox — it should arrive within a few minutes.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-num done">&#10003;</div>
+        <div class="tl-body">
+          <div class="tl-label">Form submitted</div>
+          <div class="tl-desc">Your contact info has been received.</div>
+          <div class="tl-time">Just now</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num active">→</div>
+        <div class="tl-body">
+          <div class="tl-label">Check your email & start the diagnostic</div>
+          <div class="tl-desc">Open the email from bill@revagentic.ai and click the link to begin your 8-step Revenue System Diagnostic.</div>
+          <div class="tl-time">Arriving now — check your inbox</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num pending">3</div>
+        <div class="tl-body">
+          <div class="tl-label">Your revenue report gets built</div>
+          <div class="tl-desc">Once you complete the diagnostic, we analyze your gaps against industry benchmarks and build a personalized report.</div>
+          <div class="tl-time">Within 15–30 minutes of completing the diagnostic</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num pending">4</div>
+        <div class="tl-body">
+          <div class="tl-label">Report delivered to your inbox</div>
+          <div class="tl-desc">A clear breakdown of where you're losing leads, members, and revenue — with the highest-leverage fixes identified.</div>
+          <div class="tl-time">Same day</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num pending">5</div>
+        <div class="tl-body">
+          <div class="tl-label">Optional: book a strategy call</div>
+          <div class="tl-desc">If the report surfaces opportunities worth exploring together, we'll include a link to schedule 30 minutes.</div>
+          <div class="tl-time">Your call</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <a class="btn-primary" href="/">← Back to RevAgentic</a>
+      <a class="btn-ghost" href="mailto:bill@revagentic.ai">Questions? Email us directly</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2026 RevAgentic · <a href="/">revagentic.ai</a></p>
+</footer>
+
+</div>
+</div>
+
+</Layout>

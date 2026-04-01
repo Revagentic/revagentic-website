@@ -1,0 +1,190 @@
+---
+import Layout from '../layouts/Layout.astro';
+const AIRTABLE_TOKEN = import.meta.env.AIRTABLE_TOKEN;
+---
+
+<Layout
+  title="Start Your Diagnostic — RevAgentic"
+  description="Answer a few questions about your operation and we'll build a personalized revenue report identifying your highest-leverage opportunities."
+>
+
+<style is:global>
+.start-page {
+  --bg:#f4f4f0;--surface:#fff;--text:#0a1628;--text-2:#64748b;--text-3:#94a3b8;--accent:#6d28d9;--accent-light:#f5f3ff;--cyan:#06b6d4;--border:#e5e3dc;
+}
+.start-page .shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+.start-page .nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.start-page .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+.start-page .nav-logo span{color:var(--accent)}
+.start-page .nav-back{font-size:13px;color:var(--text-3);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s}
+.start-page .nav-back:hover{color:var(--text-2)}
+.start-page .main{display:flex;align-items:flex-start;justify-content:center;padding:3.5rem 1.5rem 5rem;gap:4rem}
+.start-page .left{max-width:340px;width:100%;padding-top:.5rem}
+.start-page .eyebrow{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.875rem}
+.start-page h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--text);margin-bottom:1rem}
+.start-page .desc{font-size:15px;color:var(--text-2);line-height:1.7;margin-bottom:2rem}
+.start-page .trust-items{display:flex;flex-direction:column;gap:.625rem}
+.start-page .trust-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-2)}
+.start-page .trust-dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);flex-shrink:0}
+.start-page .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2.25rem;width:100%;max-width:460px;box-shadow:0 1px 3px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04)}
+.start-page .card-header{margin-bottom:1.75rem}
+.start-page .card-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.25rem}
+.start-page .card-sub{font-size:13px;color:var(--text-3);line-height:1.5}
+.start-page .field{margin-bottom:1.125rem}
+.start-page .lbl{display:block;font-size:13px;font-weight:500;color:var(--text);margin-bottom:5px}
+.start-page .req{color:var(--accent)}
+.start-page input[type=text],.start-page input[type=email],.start-page input[type=tel],.start-page input[type=number]{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:15px;padding:.7rem .875rem;outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none}
+.start-page input::placeholder{color:var(--text-3)}
+.start-page input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(109,40,217,.1);background:#fff}
+.start-page .members-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px}
+.start-page .mopt{display:flex;align-items:center;gap:8px;padding:.6rem .75rem;background:var(--bg);border:1px solid var(--border);border-radius:8px;cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
+.start-page .mopt:hover{background:#ede9fe20;border-color:#ccc}
+.start-page .mopt.sel{background:var(--accent-light);border-color:var(--accent)}
+.start-page .mdot{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;background:#fff;transition:all .15s}
+.start-page .mopt.sel .mdot{border-color:var(--accent);background:var(--accent)}
+.start-page .mopt.sel .mdot::after{content:'';width:5px;height:5px;border-radius:50%;background:#fff}
+.start-page .mtext{font-size:13px;color:var(--text)}
+.start-page .err{font-size:12px;color:#dc2626;margin-top:4px;display:none}
+.start-page .field.has-err input{border-color:#dc2626;box-shadow:0 0 0 3px rgba(220,38,38,.08)}
+.start-page .field.has-err .err{display:block}
+.start-page .submit-wrap{margin-top:1.5rem}
+.start-page .btn-submit{width:100%;background:var(--accent);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;padding:.9rem 1.5rem;border-radius:8px;border:none;cursor:pointer;transition:filter .15s;letter-spacing:-.01em}
+.start-page .btn-submit:hover{filter:brightness(1.1)}
+.start-page .btn-submit:disabled{opacity:.4;cursor:not-allowed}
+.start-page .submit-note{text-align:center;font-size:12px;color:var(--text-3);margin-top:.75rem}
+.start-page .footer{border-top:1px solid var(--border);padding:1.25rem 2rem;text-align:center}
+.start-page .footer p{font-size:12px;color:var(--text-3)}
+.start-page .footer a{color:var(--text-3);text-decoration:none}
+.start-page .footer a:hover{color:var(--accent)}
+@media(max-width:860px){.start-page .main{flex-direction:column;align-items:center;gap:2rem;padding:2rem 1rem 4rem}.start-page .left{max-width:460px}}
+@media(max-width:520px){.start-page .members-opts{grid-template-columns:1fr}.start-page .card{padding:1.5rem;border-radius:12px}}
+</style>
+
+<div class="start-page">
+<div class="shell">
+
+<nav class="nav">
+  <a class="nav-logo" href="/">revagentic<span>.ai</span></a>
+  <a class="nav-back" href="/">← Back to site</a>
+</nav>
+
+<main class="main">
+
+  <div class="left">
+    <div class="eyebrow">Free diagnostic</div>
+    <h1>Find out where your business is leaking revenue.</h1>
+    <p class="desc">Answer a few questions about your operation and we'll build a personalized revenue report — identifying your highest-leverage opportunities to fix lead loss, improve conversions, and reduce churn.</p>
+    <div class="trust-items">
+      <div class="trust-item"><div class="trust-dot"></div>Takes less than 5 minutes</div>
+      <div class="trust-item"><div class="trust-dot"></div>Report delivered within 15–30 minutes</div>
+      <div class="trust-item"><div class="trust-dot"></div>No sales pitch — just a clear picture</div>
+      <div class="trust-item"><div class="trust-dot"></div>Built for gym and health club operators</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Start your Revenue System Diagnostic</div>
+      <div class="card-sub">We'll email you a link to complete the full diagnostic.</div>
+    </div>
+
+    <div class="field" id="f-name">
+      <label class="lbl">Full name <span class="req">*</span></label>
+      <input type="text" id="name" placeholder="Sarah Mitchell" autocomplete="name">
+      <div class="err">Please enter your name</div>
+    </div>
+
+    <div class="field" id="f-email">
+      <label class="lbl">Email address <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="sarah@yourclub.com" autocomplete="email">
+      <div class="err">Please enter a valid email</div>
+    </div>
+
+    <div class="field">
+      <label class="lbl">Phone number</label>
+      <input type="tel" id="phone" placeholder="+1 (614) 555-0100" autocomplete="tel">
+    </div>
+
+    <div class="field" id="f-biz">
+      <label class="lbl">Business name <span class="req">*</span></label>
+      <input type="text" id="biz" placeholder="Iron & Oak Fitness">
+      <div class="err">Please enter your business name</div>
+    </div>
+
+    <div class="field">
+      <label class="lbl">Active members</label>
+      <div class="members-opts" id="members">
+        <div class="mopt" data-v="Under 100"><div class="mdot"></div><span class="mtext">Under 100</span></div>
+        <div class="mopt" data-v="100-300"><div class="mdot"></div><span class="mtext">100 – 300</span></div>
+        <div class="mopt" data-v="300-750"><div class="mdot"></div><span class="mtext">300 – 750</span></div>
+        <div class="mopt" data-v="750-2000"><div class="mdot"></div><span class="mtext">750 – 2,000</span></div>
+        <div class="mopt" data-v="2000+"><div class="mdot"></div><span class="mtext">2,000+</span></div>
+      </div>
+    </div>
+
+    <div class="submit-wrap">
+      <button class="btn-submit" id="sub">Send me the diagnostic →</button>
+      <div class="submit-note">We'll email you from bill@revagentic.ai</div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <p>© 2026 RevAgentic · <a href="/">revagentic.ai</a></p>
+</footer>
+
+</div>
+</div>
+
+<script define:vars={{ AIRTABLE_TOKEN }}>
+const TOKEN=AIRTABLE_TOKEN;
+const BASE='app0cpbQjtdZh1sHT';
+const TABLE='tbluRGQFHiT1GySGo';
+let memberVal='';
+
+document.querySelectorAll('#members .mopt').forEach(el => {
+  el.addEventListener('click', function() {
+    document.querySelectorAll('#members .mopt').forEach(o=>o.classList.remove('sel'));
+    this.classList.add('sel');
+    memberVal=this.dataset.v;
+  });
+});
+
+function validate(){
+  const n=document.getElementById('name').value.trim();
+  const e=document.getElementById('email').value.trim();
+  const b=document.getElementById('biz').value.trim();
+  document.getElementById('f-name').classList.toggle('has-err',!n);
+  document.getElementById('f-email').classList.toggle('has-err',!e||!e.includes('@'));
+  document.getElementById('f-biz').classList.toggle('has-err',!b);
+  return !!(n&&e&&e.includes('@')&&b);
+}
+
+document.getElementById('sub').addEventListener('click', async function(){
+  if(!validate())return;
+  const btn=this;
+  btn.disabled=true;btn.textContent='Sending...';
+  const today=new Date().toISOString().split('T')[0];
+  const fields={
+    'fldGGKln510zIwbEL':document.getElementById('name').value.trim(),
+    'fldI5kNvXERLJvdRj':document.getElementById('email').value.trim(),
+    'fld6fcrl4c8oSboZE':document.getElementById('phone').value.trim()||undefined,
+    'fld5DKwy8AIyOIruA':document.getElementById('biz').value.trim(),
+    'fldwMJ5TAWxZkNOjG':today,
+  };
+  if(memberVal)fields['fldWvDe5TH8LYlXTf']=memberVal;
+  Object.keys(fields).forEach(k=>{if(fields[k]===undefined)delete fields[k];});
+  try{
+    const r=await fetch('https://api.airtable.com/v0/'+BASE+'/'+TABLE,{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+TOKEN,'Content-Type':'application/json'},
+      body:JSON.stringify({fields})
+    });
+    if(r.ok){window.location.href='/thank-you';}
+    else{btn.disabled=false;btn.textContent='Send me the diagnostic →';alert('Something went wrong. Please try again.');}
+  }catch(e){btn.disabled=false;btn.textContent='Send me the diagnostic →';alert('Network error. Please try again.');}
+});
+</script>
+
+</Layout>

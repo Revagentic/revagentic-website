@@ -1,0 +1,129 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Report In Progress — RevAgentic"
+  description="Your diagnostic is complete. We're analyzing your gaps and building your personalized revenue report."
+>
+
+<style is:global>
+.dc-page {
+  --bg:#f4f4f0;--surface:#fff;--text:#0a1628;--text-2:#64748b;--text-3:#94a3b8;--accent:#6d28d9;--accent-light:#f5f3ff;--cyan:#06b6d4;--border:#e5e3dc;
+}
+.dc-page .shell{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto}
+.dc-page .nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between}
+.dc-page .nav-logo{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+.dc-page .nav-logo span{color:var(--accent)}
+.dc-page .main{display:flex;align-items:center;justify-content:center;padding:4rem 1.5rem}
+.dc-page .content{width:100%;max-width:620px;text-align:center}
+.dc-page .status-wrap{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:2rem}
+.dc-page .pulse-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);animation:dc-pulse 2s ease-in-out infinite}
+@keyframes dc-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.85)}}
+.dc-page .status-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.dc-page .icon-wrap{width:64px;height:64px;background:var(--accent-light);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.dc-page .icon-wrap svg{width:30px;height:30px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.dc-page h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.25rem;font-weight:800;letter-spacing:-0.03em;line-height:1.15;color:var(--text);margin-bottom:.875rem}
+.dc-page h1 span{color:var(--accent)}
+.dc-page .sub{font-size:16px;color:var(--text-2);line-height:1.7;max-width:440px;margin:0 auto 2.5rem}
+.dc-page .timeline{text-align:left;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2.5rem;background:var(--surface)}
+.dc-page .tl-item{display:flex;align-items:flex-start;gap:1rem;padding:1.125rem 1.5rem;border-bottom:1px solid var(--border)}
+.dc-page .tl-item:last-child{border-bottom:none}
+.dc-page .tl-num{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;margin-top:1px}
+.dc-page .tl-num.done{background:var(--accent-light);color:var(--accent)}
+.dc-page .tl-num.active{background:#ecfeff;color:var(--cyan)}
+.dc-page .tl-num.pending{background:var(--bg);color:var(--text-3);border:1px solid var(--border)}
+.dc-page .tl-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.dc-page .tl-desc{font-size:13px;color:var(--text-2);line-height:1.5}
+.dc-page .tl-time{font-size:11px;font-weight:500;color:var(--text-3);margin-top:3px;letter-spacing:.02em}
+.dc-page .cta-wrap{display:flex;flex-direction:column;align-items:center;gap:.875rem}
+.dc-page .btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:15px;padding:.875rem 2rem;border-radius:8px;text-decoration:none;transition:filter .15s}
+.dc-page .btn-primary:hover{filter:brightness(1.1)}
+.dc-page .btn-ghost{font-size:13px;color:var(--text-3);text-decoration:none}
+.dc-page .btn-ghost:hover{color:var(--text-2)}
+.dc-page .footer{border-top:1px solid var(--border);padding:1.25rem 2rem;text-align:center}
+.dc-page .footer p{font-size:12px;color:var(--text-3)}
+.dc-page .footer a{color:var(--text-3);text-decoration:none}
+.dc-page .footer a:hover{color:var(--accent)}
+@media(max-width:640px){.dc-page h1{font-size:1.65rem}.dc-page .main{padding:2.5rem 1rem}.dc-page .tl-item{padding:.875rem 1rem}}
+</style>
+
+<div class="dc-page">
+<div class="shell">
+
+<nav class="nav">
+  <a class="nav-logo" href="/">revagentic<span>.ai</span></a>
+</nav>
+
+<main class="main">
+  <div class="content">
+
+    <div class="status-wrap">
+      <div class="pulse-dot"></div>
+      <span class="status-text">Report in progress</span>
+    </div>
+
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+    </div>
+
+    <h1>We're building your<br><span>revenue report.</span></h1>
+    <p class="sub">Your diagnostic is complete. We're analyzing your gaps now — expect a personalized revenue report in your inbox within 15–30 minutes from <strong>bill@revagentic.ai</strong>.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-num done">&#10003;</div>
+        <div class="tl-body">
+          <div class="tl-label">Diagnostic completed</div>
+          <div class="tl-desc">Your operational data has been captured and is queued for analysis.</div>
+          <div class="tl-time">Just now</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num active">→</div>
+        <div class="tl-body">
+          <div class="tl-label">Revenue report being built</div>
+          <div class="tl-desc">We're mapping your lead gaps, conversion leaks, and retention risk against industry benchmarks to build your personalized report.</div>
+          <div class="tl-time">In progress — 15–30 minutes</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num pending">3</div>
+        <div class="tl-body">
+          <div class="tl-label">Report delivered to your inbox</div>
+          <div class="tl-desc">A clear breakdown of where you're losing leads, members, and revenue — with the highest-leverage fixes identified.</div>
+          <div class="tl-time">Within 30 minutes</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-num pending">4</div>
+        <div class="tl-body">
+          <div class="tl-label">Optional: book a strategy call</div>
+          <div class="tl-desc">If the report surfaces opportunities worth exploring together, we'll include a link to schedule 30 minutes with our team.</div>
+          <div class="tl-time">Your call</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-wrap">
+      <a class="btn-primary" href="/">← Back to RevAgentic</a>
+      <a class="btn-ghost" href="mailto:bill@revagentic.ai">Questions? Email us directly</a>
+    </div>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2026 RevAgentic · <a href="/">revagentic.ai</a></p>
+</footer>
+
+</div>
+</div>
+
+</Layout>
