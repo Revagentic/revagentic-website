@@ -5,7 +5,28 @@ const MAILGUN_API_KEY = import.meta.env.MAILGUN_API_KEY;
 const MAILGUN_DOMAIN = import.meta.env.MAILGUN_DOMAIN;
 const AIRTABLE_BASE = 'app0cpbQjtdZh1sHT';
 const AIRTABLE_TABLE = 'tbluRGQFHiT1GySGo';
+// Map the radio-button label to a midpoint number for the Airtable "Active Members" number field
+const MEMBERS_MAP: Record<string, number> = {
+  'Under 100': 50,
+  '100-300': 200,
+  '300-750': 525,
+  '750-2000': 1375,
+  '2000+': 2500,
+};
+```
 
+**2. Find this line** (around line 22):
+```
+const today = now.split('T')[0];const membersNum = members ? MEMBERS_MAP[members] ?? null : null;
+```
+
+**3. Find this line:**
+```
+...(members && { fldWvDe5TH8LYlXTf: members }),
+```
+Change it to:
+```
+...(membersNum && { fldWvDe5TH8LYlXTf: membersNum }),
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
