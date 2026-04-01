@@ -50,6 +50,10 @@ export const GET: APIRoute = async ({ request }) => {
       const phone = record.fields['Phone'];
       if (!phone) continue;
 
+      // Clean phone to 10 digits (strip +1, spaces, dashes, parens)
+      const cleanPhone = phone.replace(/\D/g, '').replace(/^1/, '');
+      if (cleanPhone.length !== 10) continue;
+
       // Send SMS via SlickText
       const smsRes = await fetch('https://api.slicktext.com/v1/outbound', {
         method: 'POST',
@@ -58,7 +62,8 @@ export const GET: APIRoute = async ({ request }) => {
           Authorization: `Basic ${btoa(`${SLICKTEXT_USERNAME}:${SLICKTEXT_API_KEY}`)}`,
         },
         body: JSON.stringify({
-          number: phone,
+          textword: 'REVAGENTIC',
+          number: cleanPhone,
           message: `Hi ${name.split(' ')[0]}, Bill here from RevAgentic. Sent you a diagnostic link a few hours ago — takes 5 min and your revenue report follows same day: https://revagentic.ai/diagnostic`,
         }),
       });
