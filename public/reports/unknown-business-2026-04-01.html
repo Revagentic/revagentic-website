@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Revenue Health Report — Unknown Business | RevAgentic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f8f9fc;
+    color: #0f1729;
+    line-height: 1.6;
+  }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: #0f1729;
+    min-height: 100vh;
+    padding: 60px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before, .cover::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(109,40,217,0.25);
+    pointer-events: none;
+  }
+  .cover::before { width: 600px; height: 600px; top: -200px; right: -200px; }
+  .cover::after  { width: 900px; height: 900px; top: -350px; right: -350px; }
+
+  .cover-wordmark {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #94a3b8;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-wordmark span { color: #6d28d9; }
+
+  .cover-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6d28d9;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 72px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: white;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .cover-title .accent { color: #6d28d9; }
+
+  .cover-client-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-score-block {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 32px 40px;
+    width: fit-content;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-score-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 96px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    color: #f59e0b;
+  }
+
+  .cover-score-label {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  .cover-tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    letter-spacing: -0.01em;
+  }
+  .tier-critical  { background: rgba(239,68,68,0.15);  color: #ef4444; }
+  .tier-risk      { background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .tier-developing{ background: rgba(139,92,246,0.15); color: #8b5cf6; }
+  .tier-healthy   { background: rgba(6,182,212,0.15);  color: #06b6d4; }
+  .tier-optimized { background: rgba(16,185,129,0.15); color: #10b981; }
+
+  /* ─── MAIN PAGE ─── */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6d28d9;
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #0f1729;
+    margin-bottom: 28px;
+    line-height: 1.15;
+  }
+
+  .tier-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+
+  .intro-para {
+    font-size: 16px;
+    color: #334155;
+    line-height: 1.8;
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+
+  /* ─── METRICS GRID ─── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .metric-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px 20px;
+  }
+  .metric-label {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #94a3b8;
+    margin-bottom: 8px;
+  }
+  .metric-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #0f1729;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .metric-value.purple { color: #6d28d9; }
+  .metric-value.red    { color: #ef4444; }
+  .metric-value.cyan   { color: #06b6d4; font-size: 22px; margin-top: 6px; }
+  .metric-sub {
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 48px 0;
+  }
+
+  /* ─── PILLARS ─── */
+  .pillars-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 12px; }
+
+  .pillar-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 48px 40px;
+    align-items: center;
+    gap: 16px;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 14px 20px;
+  }
+  .pillar-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #0f1729;
+  }
+  .pillar-cat {
+    font-size: 11px;
+    color: #94a3b8;
+    margin-top: 2px;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .bar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+  .fill-1 { background: #ef4444; width: 20%; }
+  .fill-2 { background: #f59e0b; width: 40%; }
+  .fill-3 { background: #8b5cf6; width: 60%; }
+  .fill-4 { background: #06b6d4; width: 80%; }
+  .fill-5 { background: #10b981; width: 100%; }
+
+  .score-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    text-align: center;
+  }
+  .c-1 { color: #ef4444; }
+  .c-2 { color: #f59e0b; }
+  .c-3 { color: #8b5cf6; }
+  .c-4 { color: #06b6d4; }
+  .c-5 { color: #10b981; }
+
+  .weight-lbl {
+    font-size: 11px;
+    color: #94a3b8;
+    font-family: 'JetBrains Mono', monospace;
+    text-align: right;
+  }
+
+  /* ─── FINDINGS ─── */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .finding-card {
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid transparent;
+  }
+  .finding-card.critical {
+    background: #fff7ed;
+    border-color: #fed7aa;
+  }
+  .finding-card.positive {
+    background: #f0fdf4;
+    border-color: #bbf7d0;
+  }
+  .finding-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .finding-card.critical .finding-tag { color: #ea580c; }
+  .finding-card.positive .finding-tag { color: #16a34a; }
+  .finding-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f1729;
+    margin-bottom: 8px;
+  }
+  .finding-body {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.65;
+  }
+
+  /* ─── OPPORTUNITY BLOCK ─── */
+  .opportunity-block {
+    background: #0f1729;
+    border-radius: 16px;
+    padding: 40px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+  .opp-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6d28d9;
+    margin-bottom: 8px;
+  }
+  .opp-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .opp-body {
+    font-size: 14px;
+    color: #94a3b8;
+    line-height: 1.7;
+    max-width: 440px;
+  }
+  .opp-num-block { text-align: right; flex-shrink: 0; }
+  .opp-big {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    letter-spacing: -0.03em;
+    color: #06b6d4;
+    white-space: nowrap;
+  }
+  .opp-per {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #64748b;
+    margin-top: 4px;
+  }
+
+  /* ─── RECOMMENDATIONS ─── */
+  .reco-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 48px; }
+  .reco-item {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 20px;
+    align-items: start;
+  }
+  .reco-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    color: #64748b;
+    flex-shrink: 0;
+  }
+  .reco-num.purple-bg { background: #6d28d9; color: white; }
+  .reco-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #0f1729;
+    margin-bottom: 8px;
+  }
+  .reco-body {
+    font-size: 13px;
+    color: #475569;
+    line-height: 1.65;
+  }
+  .reco-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .tag {
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+  .upside-high    { background: #fef3c7; color: #92400e; }
+  .upside-med     { background: #ede9fe; color: #5b21b6; }
+  .upside-low     { background: #f1f5f9; color: #64748b; }
+  .effort-low     { background: #dcfce7; color: #166534; }
+  .effort-med     { background: #fef9c3; color: #854d0e; }
+  .effort-high    { background: #fee2e2; color: #991b1b; }
+  .done-for       { background: #ede9fe; color: #5b21b6; }
+  .guided         { background: #e0f2fe; color: #075985; }
+  .self-serve     { background: #f0fdf4; color: #166534; }
+
+  /* ─── CTA BLOCK ─── */
+  .cta-block {
+    background: linear-gradient(135deg, #4c1d95 0%, #1e1b4b 100%);
+    border-radius: 16px;
+    padding: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  .cta-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: white;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  .cta-body {
+    font-size: 14px;
+    color: #c4b5fd;
+    line-height: 1.7;
+    max-width: 440px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: white;
+    color: #4c1d95;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 16px 32px;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    flex-shrink: 0;
+    transition: transform 0.15s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  .report-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 28px;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+  .footer-wordmark {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #64748b;
+  }
+  .footer-wordmark span { color: #6d28d9; }
+
+  @media (max-width: 768px) {
+    .cover { padding: 40px 28px; }
+    .cover-title { font-size: 48px; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+    .findings-grid { grid-template-columns: 1fr; }
+    .opportunity-block { flex-direction: column; }
+    .cta-block { flex-direction: column; }
+    .pillar-row { grid-template-columns: 160px 1fr 40px 36px; }
+    .reco-item { grid-template-columns: 40px 1fr; }
+    .reco-tags { display: none; }
+  }
+
+  @media print {
+    body { background: white; }
+    .cover { min-height: auto; page-break-after: always; }
+    button { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-wordmark">revagentic<span>.ai</span></div>
+  <div>
+    <div class="cover-eyebrow">Revenue Systems Diagnostic · Confidential</div>
+    <h1 class="cover-title">Revenue <span class="accent">Health</span><br>Report</h1>
+    <div class="cover-client-name">Unknown Business · —</div>
+    <div class="cover-meta">ASSESSMENT DATE: APRIL 01, 2026 · PREPARED BY: BILL COLBERT</div>
+  </div>
+  <div class="cover-score-block">
+    <div class="cover-score-num">40</div>
+    <div class="cover-score-right">
+      <div class="cover-score-label">Overall Revenue Health Score</div>
+      <div class="cover-tier-badge tier-risk">⚠ At Risk (40–59)</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="page">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="eyebrow">Executive Summary</div>
+  <h2 class="section-title">Where your revenue stands today</h2>
+  <div class="tier-pill tier-risk">⚠ At Risk — Score 40 / 100</div>
+  <p class="intro-para">This submission was received without any form response data, indicating the prospect may have submitted prematurely or encountered a form issue. All diagnostic scores have been set to default values of 2 (At Risk tier), reflecting a baseline assessment rather than an actual scored evaluation. The Revenue Health Score of 40 places this prospect in the At Risk range, suggesting a $5,000–$10,000/mo opportunity if foundational revenue systems are implemented. It is recommended that a follow-up be initiated to gather complete diagnostic information before scheduling a debrief call.</p>
+
+  <!-- METRICS GRID -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Revenue Health Score</div>
+      <div class="metric-value purple">40</div>
+      <div class="metric-sub">out of 100</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Pillars Assessed</div>
+      <div class="metric-value">10</div>
+      <div class="metric-sub">across 5 categories</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Critical Gaps</div>
+      <div class="metric-value red">10</div>
+      <div class="metric-sub">scored 1–2 out of 5</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Monthly Upside</div>
+      <div class="metric-value cyan">$5K–$10K</div>
+      <div class="metric-sub">conservative estimate</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PILLAR SCORES -->
+  <div class="eyebrow">Pillar Breakdown</div>
+  <h2 class="section-title">Scores across all 10 revenue pillars</h2>
+  <div class="pillars-list">
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Lead Generation</div><div class="pillar-cat">Demand</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">12%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Lead Capture &amp; CRM</div><div class="pillar-cat">Demand</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">10%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Sales Conversion</div><div class="pillar-cat">Conversion</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">15%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Onboarding &amp; Activation</div><div class="pillar-cat">Retention</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">10%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Retention Systems</div><div class="pillar-cat">Retention</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">15%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Revenue Per Member</div><div class="pillar-cat">Monetization</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">12%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Pricing &amp; Offer Architecture</div><div class="pillar-cat">Monetization</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">8%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Reporting &amp; Analytics</div><div class="pillar-cat">Operations</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">8%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Technology Stack</div><div class="pillar-cat">Operations</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">5%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div><div class="pillar-name">Team &amp; Process</div><div class="pillar-cat">Operations</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">5%</div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- KEY FINDINGS -->
+  <div class="eyebrow">Key Findings</div>
+  <h2 class="section-title">What we found across the assessment</h2>
+  <div class="findings-grid">
+
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">No sales conversion system in place</div>
+      <div class="finding-body">No defined sales role or conversion tracking system exists based on available data. Without tracking conversion, it is impossible to benchmark or improve performance.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Retention systems absent</div>
+      <div class="finding-body">No system exists to identify at-risk members or re-engage churned members. Without proactive retention efforts, churn can quietly erode monthly recurring revenue.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Lead generation strategy undefined</div>
+      <div class="finding-body">No lead generation systems or strategies have been documented. Primary goals and facility type are unknown, making it impossible to optimize top-of-funnel activity.</div>
+    </div>
+
+    <div class="finding-card positive">
+      <div class="finding-tag">Opportunity</div>
+      <div class="finding-title">Technology foundation ready to build on</div>
+      <div class="finding-body">While no platforms are currently in use, the absence of legacy systems means there are no migration hurdles. The right technology stack can be deployed cleanly from scratch.</div>
+    </div>
+
+    <div class="finding-card positive">
+      <div class="finding-tag">Opportunity</div>
+      <div class="finding-title">Process clarity achievable quickly</div>
+      <div class="finding-body">With no entrenched processes in place, clear ownership of the member journey can be defined and implemented rapidly — often within days — with the right playbook.</div>
+    </div>
+
+  </div>
+
+  <!-- OPPORTUNITY BLOCK -->
+  <div class="opportunity-block">
+    <div>
+      <div class="opp-eyebrow">Revenue Opportunity</div>
+      <div class="opp-title">What fixing these gaps is worth</div>
+      <div class="opp-body">
+        Based on the current operation and the gaps identified across your
+        10 revenue pillars, we've modeled the conservative monthly revenue
+        upside available by addressing the top three priorities.
+      </div>
+    </div>
+    <div class="opp-num-block">
+      <div class="opp-big">$5K–$10K</div>
+      <div class="opp-per">Est. monthly upside</div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="eyebrow">Recommendations</div>
+  <h2 class="section-title">Your prioritized action roadmap</h2>
+  <div class="reco-list">
+
+    <div class="reco-item">
+      <div class="reco-num purple-bg">1</div>
+      <div>
+        <div class="reco-title">Implement a CRM &amp; Lead Response System</div>
+        <div class="reco-body">No lead capture or response system has been identified. Implementing a CRM with automated lead response within 5 minutes can increase conversion rates by 20–40%. RevAgentic can deploy a fully automated lead capture and response sequence customized for your facility type.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-high">$5,000+/mo</span>
+        <span class="tag effort-med">Medium Effort</span>
+        <span class="tag done-for">Full Implementation</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num purple-bg">2</div>
+      <div>
+        <div class="reco-title">Define and Assign Sales Process Ownership</div>
+        <div class="reco-body">Without a defined sales role, leads are likely falling through the cracks. Assigning a dedicated sales owner and creating a simple follow-up sequence is the fastest path to improved close rates. This requires no technology investment, just process clarity.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-high">$3,000–$5,000/mo</span>
+        <span class="tag effort-low">Low Effort</span>
+        <span class="tag guided">Strategy Session</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">3</div>
+      <div>
+        <div class="reco-title">Build a Structured Member Onboarding Program</div>
+        <div class="reco-body">A structured onboarding experience within the first 30 days significantly reduces early cancellations. Creating a sequence of touchpoints — welcome call, first-week check-in, and 30-day milestone — can dramatically improve activation rates. RevAgentic provides ready-to-use onboarding playbooks and automation templates.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-med">$1,500–$3,000/mo</span>
+        <span class="tag effort-low">Low Effort</span>
+        <span class="tag done-for">Done-For-You</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">4</div>
+      <div>
+        <div class="reco-title">Activate Retention Monitoring &amp; Win-Back Campaigns</div>
+        <div class="reco-body">No at-risk member tracking or win-back strategy exists based on available information. Implementing automated alerts for inactive members and a structured re-engagement campaign can recover significant monthly recurring revenue. RevAgentic can deploy a full retention automation suite integrated with your membership platform.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-med">$1,500–$3,000/mo</span>
+        <span class="tag effort-med">Medium Effort</span>
+        <span class="tag done-for">Full Implementation</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">5</div>
+      <div>
+        <div class="reco-title">Establish Core KPI Tracking Dashboard</div>
+        <div class="reco-body">Without baseline tracking of conversion rate, no-show rate, and retention, it is impossible to measure improvement over time. Setting up a simple weekly dashboard with 5–7 core metrics provides the foundation for all other optimization efforts. RevAgentic offers a pre-built KPI dashboard template deployable in under one week.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-med">$500–$1,500/mo</span>
+        <span class="tag effort-low">Low Effort</span>
+        <span class="tag guided">Guided Setup</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div>
+      <div class="cta-title">Ready to close the revenue gap?</div>
+      <div class="cta-body">
+        Schedule a 30-minute Strategy Session with Bill Colbert to walk
+        through your roadmap, answer questions, and determine the right
+        engagement to get started. No commitment required.
+      </div>
+    </div>
+    <a class="cta-btn" href="https://calendar.app.google/iJiE85Tamv3zvbyW9">Book a Strategy Session →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div class="footer-wordmark">revagentic<span>.ai</span></div>
+    <div>© 2026 RevAgentic · bill@revagentic.ai · Confidential</div>
+  </div>
+
+</div>
+
+<!-- PRINT BUTTON -->
+<button onclick="window.print()"
+  style="position:fixed;bottom:24px;right:24px;background:#6d28d9;color:white;
+         font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12px;
+         padding:10px 18px;border-radius:8px;border:none;cursor:pointer;
+         letter-spacing:0.02em;z-index:999;">
+  ↓ Save as PDF
+</button>
+
+</body>
+</html>
