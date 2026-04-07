@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Revenue Health Report — Webb Fitness | RevAgentic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --surface2: #1c2436;
+    --border: #1e2d45;
+    --purple: #6d28d9;
+    --purple-light: #7c3aed;
+    --cyan: #06b6d4;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --green: #10b981;
+    --text-primary: #f0f4ff;
+    --text-secondary: #94a3b8;
+    --text-muted: #475569;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ——— COVER ——— */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0f1e 0%, #0f1a30 40%, #130a2a 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 48px 64px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    border-radius: 50%;
+    border: 1px solid rgba(109,40,217,0.12);
+    pointer-events: none;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(109,40,217,0.18);
+    pointer-events: none;
+  }
+
+  .cover-ring {
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 350px; height: 350px;
+    border-radius: 50%;
+    border: 1px solid rgba(109,40,217,0.25);
+    pointer-events: none;
+  }
+
+  .cover-wordmark {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #94a3b8;
+    letter-spacing: -0.01em;
+  }
+  .cover-wordmark span { color: var(--purple); }
+
+  .cover-eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 20px;
+  }
+
+  .cover-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: clamp(52px, 8vw, 80px);
+    line-height: 1.0;
+    letter-spacing: -0.04em;
+    color: var(--text-primary);
+    margin-bottom: 28px;
+  }
+  .cover-title .accent { color: var(--purple); }
+
+  .cover-client-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #cbd5e1;
+    margin-bottom: 10px;
+  }
+
+  .cover-meta {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .cover-score-block {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px 36px;
+    width: fit-content;
+    backdrop-filter: blur(8px);
+  }
+
+  .cover-score-num {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 80px;
+    letter-spacing: -0.05em;
+    color: var(--purple);
+    line-height: 1;
+  }
+
+  .cover-score-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+  }
+
+  .cover-tier-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 100px;
+  }
+  .tier-risk { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .tier-critical { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .tier-developing { background: rgba(109,40,217,0.15); color: #a78bfa; border: 1px solid rgba(109,40,217,0.3); }
+  .tier-healthy { background: rgba(6,182,212,0.15); color: #22d3ee; border: 1px solid rgba(6,182,212,0.3); }
+  .tier-optimized { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); }
+
+  /* ——— PAGE ——— */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 72px 64px;
+  }
+
+  @media (max-width: 640px) {
+    .cover { padding: 32px 24px; }
+    .page { padding: 48px 24px; }
+    .cover-score-block { flex-direction: column; align-items: flex-start; }
+    .cover-score-num { font-size: 60px; }
+  }
+
+  .eyebrow {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .tier-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+
+  .intro-para {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #cbd5e1;
+    max-width: 720px;
+    margin-bottom: 40px;
+  }
+
+  /* ——— METRICS GRID ——— */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 640px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .metric-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+  }
+  .metric-value.purple { color: var(--purple); }
+  .metric-value.red { color: var(--red); }
+  .metric-value.cyan { font-size: 22px; margin-top: 6px; color: var(--cyan); }
+
+  .metric-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  /* ——— PILLARS ——— */
+  .pillars-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 8px;
+  }
+
+  .pillar-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 44px 44px;
+    align-items: center;
+    gap: 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+  }
+  @media (max-width: 640px) { .pillar-row { grid-template-columns: 1fr 1fr 36px 36px; } }
+
+  .pillar-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+  }
+
+  .pillar-cat {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .bar-track {
+    height: 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 100px;
+    transition: width 0.6s ease;
+  }
+  .fill-1 { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .fill-2 { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .fill-3 { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+  .fill-4 { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+  .fill-5 { background: linear-gradient(90deg, #10b981, #34d399); }
+
+  .score-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+  }
+  .c-1 { color: #f87171; }
+  .c-2 { color: #fbbf24; }
+  .c-3 { color: #a78bfa; }
+  .c-4 { color: #22d3ee; }
+  .c-5 { color: #34d399; }
+
+  .weight-lbl {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: right;
+  }
+
+  /* ——— FINDINGS ——— */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+  .finding-card {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 24px;
+    border-left: 3px solid transparent;
+  }
+  .finding-card.critical { border-left-color: var(--red); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); }
+  .finding-card.positive { border-left-color: var(--green); border: 1px solid rgba(16,185,129,0.2); border-left: 3px solid var(--green); }
+
+  .finding-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .finding-card.critical .finding-tag { color: #f87171; }
+  .finding-card.positive .finding-tag { color: #34d399; }
+
+  .finding-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .finding-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ——— OPPORTUNITY BLOCK ——— */
+  .opportunity-block {
+    background: linear-gradient(135deg, #0f1a30 0%, #130a2a 100%);
+    border: 1px solid rgba(109,40,217,0.3);
+    border-radius: 16px;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 640px) { .opportunity-block { flex-direction: column; } }
+
+  .opp-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 8px;
+  }
+
+  .opp-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .opp-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .opp-num-block {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .opp-big {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    letter-spacing: -0.04em;
+    color: var(--cyan);
+    white-space: nowrap;
+  }
+
+  .opp-per {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  /* ——— RECOMMENDATIONS ——— */
+  .reco-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .reco-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 18px;
+    align-items: start;
+  }
+  @media (max-width: 640px) { .reco-item { grid-template-columns: 36px 1fr; } }
+
+  .reco-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+  }
+  .reco-num.purple-bg { background: rgba(109,40,217,0.2); border-color: rgba(109,40,217,0.4); color: #a78bfa; }
+
+  .reco-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .reco-body {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  .reco-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  @media (max-width: 640px) { .reco-tags { display: none; } }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .upside-high { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+  .upside-med  { background: rgba(6,182,212,0.12);  color: #22d3ee; border: 1px solid rgba(6,182,212,0.25); }
+  .upside-low  { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.2); }
+  .effort-low  { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+  .effort-med  { background: rgba(245,158,11,0.12); color: #fbbf24; border: 1px solid rgba(245,158,11,0.25); }
+  .effort-high { background: rgba(239,68,68,0.12);  color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+  .done-for   { background: rgba(109,40,217,0.12); color: #a78bfa; border: 1px solid rgba(109,40,217,0.25); }
+  .guided     { background: rgba(6,182,212,0.12);  color: #22d3ee; border: 1px solid rgba(6,182,212,0.25); }
+  .self-serve { background: rgba(148,163,184,0.1); color: #94a3b8; border: 1px solid rgba(148,163,184,0.2); }
+  .strategy-support { background: rgba(16,185,129,0.12); color: #34d399; border: 1px solid rgba(16,185,129,0.25); }
+
+  /* ——— CTA ——— */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(109,40,217,0.15) 0%, rgba(6,182,212,0.08) 100%);
+    border: 1px solid rgba(109,40,217,0.35);
+    border-radius: 16px;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 48px;
+  }
+  @media (max-width: 640px) { .cta-block { flex-direction: column; align-items: flex-start; } }
+
+  .cta-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .cta-body {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--purple);
+    color: white;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 14px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    letter-spacing: -0.01em;
+    transition: background 0.2s ease, transform 0.1s ease;
+    flex-shrink: 0;
+  }
+  .cta-btn:hover { background: var(--purple-light); transform: translateY(-1px); }
+
+  /* ——— FOOTER ——— */
+  .report-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-wordmark {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--text-secondary);
+  }
+  .footer-wordmark span { color: var(--purple); }
+
+  .footer-meta {
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  @media print {
+    .cover { min-height: 100vh; }
+    .page { padding: 48px; }
+    button { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-ring"></div>
+  <div class="cover-wordmark">revagentic<span>.ai</span></div>
+  <div>
+    <div class="cover-eyebrow">Revenue Systems Diagnostic · Confidential</div>
+    <h1 class="cover-title">Revenue <span class="accent">Health</span><br>Report</h1>
+    <div class="cover-client-name">Webb Fitness · Fort Worth, TX</div>
+    <div class="cover-meta">ASSESSMENT DATE: April 7, 2026 · PREPARED BY: BILL COLBERT</div>
+  </div>
+  <div class="cover-score-block">
+    <div class="cover-score-num">48</div>
+    <div class="cover-score-right">
+      <div class="cover-score-label">Overall Revenue Health Score</div>
+      <div class="cover-tier-badge tier-risk">⚠ At Risk (40–59)</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="page">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="eyebrow">Executive Summary</div>
+  <h2 class="section-title">Where your revenue stands today</h2>
+  <div class="tier-pill tier-risk">⚠ At Risk — Score 48 / 100</div>
+  <p class="intro-para">Warren Webb and the Webb Fitness team in Fort Worth, TX are at a pivotal moment — they have the technology foundation (ABC Fitness, automated SMS) and operational discipline (low no-show rate, metric tracking) in place, but the business is being held back by critical gaps in retention systems and a sales process too dependent on untrained front desk staff. With a conversion rate under 20% and zero at-risk or win-back workflows, every month without these systems represents measurable, compounding revenue loss. The good news is that the infrastructure is in place to move quickly — Webb Fitness has the data visibility and automation tooling to build on immediately. With focused execution on sales conversion, retention, and onboarding activation, Webb Fitness is well-positioned to reach the Healthy tier within 90 days.</p>
+
+  <!-- METRICS GRID -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Revenue Health Score</div>
+      <div class="metric-value purple">48</div>
+      <div class="metric-sub">out of 100</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Pillars Assessed</div>
+      <div class="metric-value">10</div>
+      <div class="metric-sub">across 5 categories</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Critical Gaps</div>
+      <div class="metric-value red">6</div>
+      <div class="metric-sub">scored 1–2 out of 5</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Monthly Upside</div>
+      <div class="metric-value cyan">$5K–$10K</div>
+      <div class="metric-sub">conservative estimate</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PILLAR SCORES -->
+  <div class="eyebrow">Pillar Breakdown</div>
+  <h2 class="section-title">Scores across all 10 revenue pillars</h2>
+  <div class="pillars-list">
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Lead Generation</div>
+        <div class="pillar-cat">Demand</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-2" style="width:40%"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">12%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Lead Capture &amp; CRM</div>
+        <div class="pillar-cat">Demand</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-3" style="width:60%"></div></div>
+      <div class="score-num c-3">3</div>
+      <div class="weight-lbl">10%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Sales Conversion</div>
+        <div class="pillar-cat">Conversion</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-2" style="width:40%"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">15%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Onboarding &amp; Activation</div>
+        <div class="pillar-cat">Conversion</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-3" style="width:60%"></div></div>
+      <div class="score-num c-3">3</div>
+      <div class="weight-lbl">10%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Retention Systems</div>
+        <div class="pillar-cat">Retention</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-1" style="width:20%"></div></div>
+      <div class="score-num c-1">1</div>
+      <div class="weight-lbl">15%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Revenue Per Member</div>
+        <div class="pillar-cat">Revenue</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-2" style="width:40%"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">12%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Pricing &amp; Offer Architecture</div>
+        <div class="pillar-cat">Revenue</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-2" style="width:40%"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">8%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Reporting &amp; Analytics</div>
+        <div class="pillar-cat">Intelligence</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-5" style="width:100%"></div></div>
+      <div class="score-num c-5">5</div>
+      <div class="weight-lbl">8%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Technology Stack</div>
+        <div class="pillar-cat">Infrastructure</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-4" style="width:80%"></div></div>
+      <div class="score-num c-4">4</div>
+      <div class="weight-lbl">5%</div>
+    </div>
+
+    <div class="pillar-row">
+      <div>
+        <div class="pillar-name">Team &amp; Process</div>
+        <div class="pillar-cat">Infrastructure</div>
+      </div>
+      <div class="bar-track"><div class="bar-fill fill-2" style="width:40%"></div></div>
+      <div class="score-num c-2">2</div>
+      <div class="weight-lbl">5%</div>
+    </div>
+
+  </div>
+
+  <hr class="divider">
+
+  <!-- KEY FINDINGS -->
+  <div class="eyebrow">Key Findings</div>
+  <h2 class="section-title">What we found across the assessment</h2>
+  <div class="findings-grid">
+
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Zero Retention Infrastructure</div>
+      <div class="finding-body">Zero retention infrastructure: no at-risk member identification, no automated retention touchpoints, and no win-back campaign for cancelled members. Every month without this system is compounding churn that could be prevented.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Sales Process Lacks Structure</div>
+      <div class="finding-body">No dedicated sales role, no scripted guest experience process, and no structured follow-up framework after guest visits or free trials. With conversion under 20%, Webb Fitness is losing 4 out of 5 prospects at the door.</div>
+    </div>
+
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Revenue Per Member Left Untapped</div>
+      <div class="finding-body">No ancillary revenue programs (personal training packages, nutrition add-ons, premium tiers) are systematically promoted to the existing member base, leaving significant LTV on the table with every member who joins.</div>
+    </div>
+
+    <div class="finding-card positive">
+      <div class="finding-tag">Strength</div>
+      <div class="finding-title">Reporting &amp; Analytics: Best-in-Class</div>
+      <div class="finding-body">Webb Fitness tracks conversion rate and no-show rate, leverages ABC Fitness for data, and uses automated SMS — a standout data foundation that creates immediate leverage for any improvement initiative.</div>
+    </div>
+
+    <div class="finding-card positive">
+      <div class="finding-tag">Strength</div>
+      <div class="finding-title">Solid Technology Stack in Place</div>
+      <div class="finding-body">The combination of ABC Fitness and automated SMS represents a strong technology foundation relative to most fitness operators at this stage — positioned to scale without major new investment.</div>
+    </div>
+
+  </div>
+
+  <!-- OPPORTUNITY BLOCK -->
+  <div class="opportunity-block">
+    <div>
+      <div class="opp-eyebrow">Revenue Opportunity</div>
+      <div class="opp-title">What fixing these gaps is worth</div>
+      <div class="opp-body">
+        Based on Webb Fitness's current operation and the gaps identified across the 10 revenue pillars, we've modeled the conservative monthly revenue upside available by addressing the top three priorities. This estimate accounts for current member volume, local market rates, and typical improvement rates for facilities at this stage.
+      </div>
+    </div>
+    <div class="opp-num-block">
+      <div class="opp-big">$5K–$10K</div>
+      <div class="opp-per">EST. MONTHLY UPSIDE</div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="eyebrow">Recommendations</div>
+  <h2 class="section-title">Your prioritized action roadmap</h2>
+  <div class="reco-list">
+
+    <div class="reco-item">
+      <div class="reco-num purple-bg">1</div>
+      <div>
+        <div class="reco-title">Build a Retention &amp; At-Risk Member System</div>
+        <div class="reco-body">Webb Fitness currently has zero retention infrastructure, making it impossible to proactively save at-risk members before they cancel. Implementing an at-risk tracking workflow inside ABC Fitness and launching an automated win-back sequence can recover 10–20% of churned members. RevAgentic can build this complete system — identification triggers, outreach sequences, and reactivation offers — in under 2 weeks.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-high">$3K–$6K/mo</span>
+        <span class="tag effort-med">Medium Effort</span>
+        <span class="tag done-for">Done-For-You</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num purple-bg">2</div>
+      <div>
+        <div class="reco-title">Implement a Structured Sales Conversion Process</div>
+        <div class="reco-body">With a sub-20% conversion rate and untrained front desk staff managing sales, Webb Fitness is leaving the majority of its prospect revenue on the table every month. A structured consultative sales process with scripted guest tours, defined follow-up cadence, and role accountability can realistically double conversion within 90 days. This is the highest-leverage, fastest-payback improvement available to the business right now.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-high">$3K–$6K/mo</span>
+        <span class="tag effort-med">Medium Effort</span>
+        <span class="tag done-for">Done-For-You</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">3</div>
+      <div>
+        <div class="reco-title">Reduce Lead Response Time to Under 5 Minutes</div>
+        <div class="reco-body">Research shows responding to a lead within 5 minutes makes you 21× more likely to qualify them than waiting 30 minutes — Webb Fitness currently responds the next day, losing virtually all digital leads to faster competitors. Configuring an instant-response automation via ABC Fitness or a connected tool will immediately improve lead qualification rates. RevAgentic can set this up in a single guided session.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-med">$1.5K–$3K/mo</span>
+        <span class="tag effort-low">Low Effort</span>
+        <span class="tag guided">Guided Setup</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">4</div>
+      <div>
+        <div class="reco-title">Launch a 30-Day New Member Onboarding Sequence</div>
+        <div class="reco-body">Despite a strong no-show rate, Webb Fitness lacks the activation touchpoints that convert new sign-ups into long-term, habit-formed members. A 30-day SMS and email onboarding sequence with check-ins at Days 1, 3, 7, 14, and 30 dramatically improves early retention and creates natural upsell windows. RevAgentic can deploy a customized onboarding flow using the existing SMS automation already in place.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-med">$1.5K–$3K/mo</span>
+        <span class="tag effort-low">Low Effort</span>
+        <span class="tag done-for">Done-For-You</span>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">5</div>
+      <div>
+        <div class="reco-title">Redesign Pricing with a 3-Tier Offer Architecture</div>
+        <div class="reco-body">A flat membership model leaves revenue on the table by failing to capture higher-value members or create upsell pathways within the existing base. A 3-tier structure (Basic, Standard, Premium) with differentiated benefits can increase average revenue per member by 15–30% without adding new members. RevAgentic can conduct a full pricing audit and redesign the offer stack aligned to Webb Fitness's current member demographics.</div>
+      </div>
+      <div class="reco-tags">
+        <span class="tag upside-med">$1.5K–$3K/mo</span>
+        <span class="tag effort-med">Medium Effort</span>
+        <span class="tag strategy-support">Strategy</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div>
+      <div class="cta-title">Ready to close the revenue gap?</div>
+      <div class="cta-body">
+        Schedule a 30-minute Strategy Session with Bill Colbert to walk through your roadmap, answer questions, and determine the right engagement to get started. No commitment required — just a clear plan and an honest conversation about what will move the needle fastest for Webb Fitness.
+      </div>
+    </div>
+    <a class="cta-btn" href="https://calendar.app.google/iJiE85Tamv3zvbyW9">Book a Strategy Session →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div class="footer-wordmark">revagentic<span>.ai</span></div>
+    <div class="footer-meta">© 2026 RevAgentic · bill@revagentic.ai · Confidential</div>
+  </div>
+
+</div>
+
+<!-- PRINT BUTTON -->
+<button onclick="window.print()"
+  style="position:fixed;bottom:24px;right:24px;background:#6d28d9;color:white;
+         font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12px;
+         padding:10px 18px;border-radius:8px;border:none;cursor:pointer;
+         letter-spacing:0.02em;z-index:999;box-shadow:0 4px 20px rgba(109,40,217,0.4);">
+  ↓ Save as PDF
+</button>
+
+</body>
+</html>
