@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Revenue Health Report — T Mont Fitness | RevAgentic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0f1729;--surface:#1a2340;--surface2:#212d4a;
+    --accent:#6d28d9;--accent2:#7c3aed;--cyan:#06b6d4;
+    --amber:#f59e0b;--red:#ef4444;--green:#10b981;
+    --text:#f1f5f9;--muted:#94a3b8;--border:#2d3f6a;
+    --white:#ffffff;
+  }
+  body{background:#f1f5f9;font-family:'Inter',sans-serif;color:#0f1729;line-height:1.6}
+
+  /* COVER */
+  .cover{
+    background:var(--bg);color:var(--text);
+    min-height:100vh;padding:60px 72px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;overflow:hidden;
+    page-break-after:always;
+  }
+  .cover::before,.cover::after{
+    content:'';position:absolute;border-radius:50%;
+    border:1px solid rgba(109,40,217,0.25);
+  }
+  .cover::before{width:600px;height:600px;top:-200px;right:-200px}
+  .cover::after{width:900px;height:900px;top:-300px;right:-400px;border-color:rgba(109,40,217,0.12)}
+  .cover-wordmark{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+    font-size:18px;color:var(--muted);letter-spacing:0.02em;
+    position:relative;z-index:2;
+  }
+  .cover-wordmark span{color:var(--accent)}
+  .cover-eyebrow{
+    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;
+    color:var(--muted);margin-bottom:18px;
+  }
+  .cover-title{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
+    font-size:72px;line-height:0.95;letter-spacing:-0.03em;
+    color:var(--white);margin-bottom:24px;position:relative;z-index:2;
+  }
+  .cover-title .accent{color:var(--accent)}
+  .cover-client-name{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;
+    font-size:22px;color:var(--text);margin-bottom:10px;
+  }
+  .cover-meta{font-size:11px;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase}
+  .cover-score-block{
+    display:flex;align-items:center;gap:28px;
+    background:rgba(109,40,217,0.15);border:1px solid rgba(109,40,217,0.35);
+    border-radius:16px;padding:28px 36px;position:relative;z-index:2;width:fit-content;
+  }
+  .cover-score-num{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;
+    font-size:96px;line-height:1;letter-spacing:-0.05em;color:var(--accent2);
+  }
+  .cover-score-label{font-size:13px;color:var(--muted);font-weight:500;margin-bottom:8px}
+  .cover-tier-badge{
+    display:inline-block;padding:6px 14px;border-radius:20px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12px;
+    letter-spacing:0.04em;
+  }
+  .tier-risk{background:rgba(245,158,11,0.2);color:#fbbf24;border:1px solid rgba(245,158,11,0.4)}
+
+  /* MAIN PAGE */
+  .page{max-width:900px;margin:0 auto;padding:72px 48px}
+
+  .eyebrow{
+    font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;
+    color:var(--accent);margin-bottom:10px;
+  }
+  .section-title{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;
+    font-size:32px;letter-spacing:-0.02em;color:#0f1729;margin-bottom:20px;
+  }
+  .tier-pill{
+    display:inline-block;padding:8px 18px;border-radius:24px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;
+    margin-bottom:24px;
+  }
+  .tier-pill.tier-risk{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+  .intro-para{font-size:15px;color:#475569;line-height:1.8;margin-bottom:48px}
+
+  /* METRICS GRID */
+  .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
+  .metric-card{
+    background:#fff;border:1px solid #e2e8f0;border-radius:12px;
+    padding:24px 20px;text-align:center;
+  }
+  .metric-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;margin-bottom:8px}
+  .metric-value{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:42px;letter-spacing:-0.03em;color:#0f1729;line-height:1}
+  .metric-value.purple{color:#6d28d9}
+  .metric-value.red{color:#ef4444}
+  .metric-value.cyan{color:#0891b2;font-size:26px;margin-top:8px}
+  .metric-sub{font-size:11px;color:#94a3b8;margin-top:6px}
+
+  .divider{border:none;border-top:1px solid #e2e8f0;margin:48px 0}
+
+  /* PILLARS */
+  .pillars-list{display:flex;flex-direction:column;gap:12px;margin-bottom:8px}
+  .pillar-row{display:grid;grid-template-columns:200px 1fr 36px 40px;align-items:center;gap:16px}
+  .pillar-name{font-weight:600;font-size:13px;color:#0f1729}
+  .pillar-cat{font-size:11px;color:#94a3b8;margin-top:2px}
+  .bar-track{height:8px;background:#f1f5f9;border-radius:99px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:99px;transition:width 0.3s}
+  .fill-1{background:#ef4444;width:20%}
+  .fill-2{background:#f59e0b;width:40%}
+  .fill-3{background:#8b5cf6;width:60%}
+  .fill-4{background:#06b6d4;width:80%}
+  .fill-5{background:#10b981;width:100%}
+  .score-num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;text-align:right}
+  .c-1{color:#ef4444}.c-2{color:#f59e0b}.c-3{color:#8b5cf6}.c-4{color:#06b6d4}.c-5{color:#10b981}
+  .weight-lbl{font-size:11px;color:#94a3b8;text-align:right}
+
+  /* FINDINGS */
+  .findings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+  .finding-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:24px}
+  .finding-card.critical{border-left:4px solid #ef4444}
+  .finding-card.positive{border-left:4px solid #10b981}
+  .finding-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+  .finding-card.critical .finding-tag{color:#ef4444}
+  .finding-card.positive .finding-tag{color:#10b981}
+  .finding-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:#0f1729;margin-bottom:8px}
+  .finding-body{font-size:13px;color:#64748b;line-height:1.6}
+
+  /* OPPORTUNITY */
+  .opportunity-block{
+    background:linear-gradient(135deg,#0f1729 0%,#1e1b4b 100%);
+    border-radius:16px;padding:40px;display:flex;justify-content:space-between;
+    align-items:center;gap:40px;margin-bottom:48px;
+  }
+  .opp-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7c3aed;margin-bottom:8px}
+  .opp-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:12px}
+  .opp-body{font-size:13px;color:#94a3b8;line-height:1.7;max-width:380px}
+  .opp-num-block{text-align:center;min-width:200px}
+  .opp-big{font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:36px;color:#06b6d4;letter-spacing:-0.02em}
+  .opp-per{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#64748b;margin-top:4px}
+
+  /* RECS */
+  .reco-list{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+  .reco-item{
+    background:#fff;border:1px solid #e2e8f0;border-radius:12px;
+    padding:24px;display:flex;align-items:flex-start;gap:20px;
+  }
+  .reco-num{
+    width:36px;height:36px;border-radius:50%;background:#f1f5f9;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:15px;
+    color:#0f1729;display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .reco-num.purple-bg{background:#6d28d9;color:#fff}
+  .reco-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;color:#0f1729;margin-bottom:6px}
+  .reco-body{font-size:13px;color:#64748b;line-height:1.65;margin-bottom:12px}
+  .reco-tags{display:flex;gap:8px;flex-wrap:wrap}
+  .tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;padding:4px 10px;border-radius:20px}
+  .upside-high{background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff}
+  .upside-med{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe}
+  .upside-low{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+  .effort-low{background:#f0fdf4;color:#166534;border:1px solid #bbf7d0}
+  .effort-med{background:#fffbeb;color:#92400e;border:1px solid #fde68a}
+  .effort-high{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+  .done-for{background:#f0f9ff;color:#0c4a6e;border:1px solid #bae6fd}
+  .guided{background:#f5f3ff;color:#4c1d95;border:1px solid #ddd6fe}
+  .self-serve{background:#f8fafc;color:#475569;border:1px solid #e2e8f0}
+  .full-impl{background:#f0f9ff;color:#0c4a6e;border:1px solid #bae6fd}
+  .platform-setup{background:#f5f3ff;color:#4c1d95;border:1px solid #ddd6fe}
+  .strategy-consult{background:#fdf4ff;color:#7c3aed;border:1px solid #e9d5ff}
+
+  /* CTA */
+  .cta-block{
+    background:linear-gradient(135deg,#6d28d9,#7c3aed);
+    border-radius:16px;padding:40px;display:flex;
+    justify-content:space-between;align-items:center;gap:32px;margin-bottom:48px;
+  }
+  .cta-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:#fff;margin-bottom:10px}
+  .cta-body{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7;max-width:440px}
+  .cta-btn{
+    display:inline-block;background:#fff;color:#6d28d9;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13px;
+    padding:14px 28px;border-radius:8px;text-decoration:none;letter-spacing:-0.01em;
+    white-space:nowrap;
+  }
+
+  /* FOOTER */
+  .report-footer{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:24px;border-top:1px solid #e2e8f0;
+    font-size:12px;color:#94a3b8;
+  }
+  .footer-wordmark{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;color:#0f1729}
+  .footer-wordmark span{color:#6d28d9}
+
+  @media print{
+    .cover{min-height:100vh;page-break-after:always}
+    button{display:none!important}
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-wordmark">revagentic<span>.ai</span></div>
+  <div style="position:relative;z-index:2">
+    <div class="cover-eyebrow">Revenue Systems Diagnostic · Confidential</div>
+    <h1 class="cover-title">Revenue <span class="accent">Health</span><br>Report</h1>
+    <div class="cover-client-name">T Mont Fitness · Clifton, TX</div>
+    <div class="cover-meta">ASSESSMENT DATE: April 24, 2026 · PREPARED BY: BILL COLBERT</div>
+  </div>
+  <div class="cover-score-block">
+    <div class="cover-score-num">52</div>
+    <div class="cover-score-right">
+      <div class="cover-score-label">Overall Revenue Health Score</div>
+      <div class="cover-tier-badge tier-risk">⚠ At Risk (40–59)</div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="page">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="eyebrow">Executive Summary</div>
+  <h2 class="section-title">Where your revenue stands today</h2>
+  <div class="tier-pill tier-risk">⚠ At Risk — Score 52 / 100</div>
+  <p class="intro-para">T Mont Fitness is a boutique fitness studio in Clifton, TX with solid foundational technology (Glofox) but significant revenue leakage across the member lifecycle. Their primary challenge is converting trials into paying members — a goal compounded by a same-day lead response time, untrained front desk sales staff, and no formal onboarding program. Retention systems are equally underdeveloped, with at-risk tracking happening only "sometimes" and no structured win-back process. With an overall Revenue Health Score of 52 (At Risk), the biggest opportunities lie in formalizing the sales process, building onboarding accountability, and deploying retention automation — changes that RevAgentic can implement quickly to unlock an estimated $5,000–$10,000 per month in additional revenue.</p>
+
+  <!-- METRICS GRID -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Revenue Health Score</div>
+      <div class="metric-value purple">52</div>
+      <div class="metric-sub">out of 100</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Pillars Assessed</div>
+      <div class="metric-value">10</div>
+      <div class="metric-sub">across 5 categories</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Critical Gaps</div>
+      <div class="metric-value red">5</div>
+      <div class="metric-sub">scored 1–2 out of 5</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Monthly Upside</div>
+      <div class="metric-value cyan">$5K–$10K</div>
+      <div class="metric-sub">conservative estimate</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PILLAR SCORES -->
+  <div class="eyebrow">Pillar Breakdown</div>
+  <h2 class="section-title">Scores across all 10 revenue pillars</h2>
+  <div style="display:flex;gap:24px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#94a3b8;margin-bottom:16px">
+    <span style="color:#ef4444">● 1 Critical</span>
+    <span style="color:#f59e0b">● 2 At Risk</span>
+    <span style="color:#8b5cf6">● 3 Developing</span>
+    <span style="color:#06b6d4">● 4 Healthy</span>
+    <span style="color:#10b981">● 5 Optimized</span>
+  </div>
+  <div class="pillars-list">
+    <div class="pillar-row">
+      <div><div class="pillar-name">Lead Generation</div><div class="pillar-cat">Demand</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div><div class="weight-lbl">12%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Lead Capture & CRM</div><div class="pillar-cat">Demand</div></div>
+      <div class="bar-track"><div class="bar-fill fill-4"></div></div>
+      <div class="score-num c-4">4</div><div class="weight-lbl">10%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Sales Conversion</div><div class="pillar-cat">Demand</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div><div class="weight-lbl">15%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Onboarding & Activation</div><div class="pillar-cat">Fulfillment</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div><div class="weight-lbl">10%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Retention Systems</div><div class="pillar-cat">Fulfillment</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div><div class="weight-lbl">15%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Revenue Per Member</div><div class="pillar-cat">Monetization</div></div>
+      <div class="bar-track"><div class="bar-fill fill-3"></div></div>
+      <div class="score-num c-3">3</div><div class="weight-lbl">12%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Pricing & Offer Architecture</div><div class="pillar-cat">Monetization</div></div>
+      <div class="bar-track"><div class="bar-fill fill-3"></div></div>
+      <div class="score-num c-3">3</div><div class="weight-lbl">8%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Reporting & Analytics</div><div class="pillar-cat">Operations</div></div>
+      <div class="bar-track"><div class="bar-fill fill-4"></div></div>
+      <div class="score-num c-4">4</div><div class="weight-lbl">8%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Technology Stack</div><div class="pillar-cat">Operations</div></div>
+      <div class="bar-track"><div class="bar-fill fill-3"></div></div>
+      <div class="score-num c-3">3</div><div class="weight-lbl">5%</div>
+    </div>
+    <div class="pillar-row">
+      <div><div class="pillar-name">Team & Process</div><div class="pillar-cat">Operations</div></div>
+      <div class="bar-track"><div class="bar-fill fill-2"></div></div>
+      <div class="score-num c-2">2</div><div class="weight-lbl">5%</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- KEY FINDINGS -->
+  <div class="eyebrow">Key Findings</div>
+  <h2 class="section-title">What we found across the assessment</h2>
+  <div class="findings-grid">
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Sales Conversion Breakdown</div>
+      <div class="finding-body">No dedicated sales role or structured sales script. Front desk staff are handling consultations without training, producing a 20-40% conversion rate far below industry benchmarks.</div>
+    </div>
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">No Retention System in Place</div>
+      <div class="finding-body">At-risk member tracking happens only "sometimes" with no win-back program. Revenue is leaving through cancellations without any systematic intervention to stop it.</div>
+    </div>
+    <div class="finding-card critical">
+      <div class="finding-tag">Critical Gap</div>
+      <div class="finding-title">Onboarding Gap Creates Early Churn</div>
+      <div class="finding-body">No formal onboarding program and a 25-50% no-show rate means new members never build the habit of showing up — the primary driver of early cancellations.</div>
+    </div>
+    <div class="finding-card positive">
+      <div class="finding-tag">Strength</div>
+      <div class="finding-title">Solid CRM & Tech Foundation</div>
+      <div class="finding-body">Glofox provides a competent technology base for managing leads and members. Lead response time reaches same-day, and key metrics like conversion and no-show rate are being tracked.</div>
+    </div>
+    <div class="finding-card positive">
+      <div class="finding-tag">Strength</div>
+      <div class="finding-title">Metrics Awareness is Present</div>
+      <div class="finding-body">Conversion rate and no-show rate are both being tracked, giving T Mont Fitness a data foundation that most operators at this stage lack. The data is there — it just needs to drive decisions.</div>
+    </div>
+  </div>
+
+  <!-- OPPORTUNITY -->
+  <div class="opportunity-block">
+    <div>
+      <div class="opp-eyebrow">Revenue Opportunity</div>
+      <div class="opp-title">What fixing these gaps is worth</div>
+      <div class="opp-body">Based on your current operation and the gaps identified across your 10 revenue pillars, we've modeled the conservative monthly revenue upside available by addressing your top three priorities.</div>
+    </div>
+    <div class="opp-num-block">
+      <div class="opp-big">$5K–$10K/mo</div>
+      <div class="opp-per">Est. Monthly Upside</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- RECOMMENDATIONS -->
+  <div class="eyebrow">Recommendations</div>
+  <h2 class="section-title">Your prioritized action roadmap</h2>
+  <div class="reco-list">
+
+    <div class="reco-item">
+      <div class="reco-num purple-bg">1</div>
+      <div style="flex:1">
+        <div class="reco-title">Build a Structured Sales Process</div>
+        <div class="reco-body">T Mont Fitness is losing significant revenue at the conversion stage with a 20-40% close rate handled by untrained front desk staff. Implementing a dedicated consultation framework with defined talking points, objection handling, and follow-up protocols can quickly improve conversion rates. RevAgentic can build and train this system within 2-3 weeks.</div>
+        <div class="reco-tags">
+          <span class="tag upside-high">$3,000–$5,000/mo</span>
+          <span class="tag effort-med">Medium (Weeks)</span>
+          <span class="tag full-impl">Full Implementation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num purple-bg">2</div>
+      <div style="flex:1">
+        <div class="reco-title">Launch an Onboarding & Early Activation Program</div>
+        <div class="reco-body">With a 25-50% no-show rate and no structured onboarding, T Mont Fitness is losing members before they ever build the habit of showing up. A structured first-week program dramatically reduces early churn and increases member lifetime value. RevAgentic can design and deploy a 30-day onboarding sequence within 2 weeks.</div>
+        <div class="reco-tags">
+          <span class="tag upside-med">$2,000–$4,000/mo</span>
+          <span class="tag effort-med">Medium (Weeks)</span>
+          <span class="tag done-for">Done-For-You</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">3</div>
+      <div style="flex:1">
+        <div class="reco-title">Implement Proactive Retention & Win-Back Systems</div>
+        <div class="reco-body">Inconsistent at-risk tracking and no win-back program means T Mont Fitness is watching revenue leave without any systematic intervention. A proactive approach to identifying and re-engaging at-risk and cancelled members creates a powerful revenue recovery channel. RevAgentic can automate these workflows within 3-4 weeks.</div>
+        <div class="reco-tags">
+          <span class="tag upside-med">$1,500–$3,000/mo</span>
+          <span class="tag effort-med">Medium (Weeks)</span>
+          <span class="tag done-for">Done-For-You</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">4</div>
+      <div style="flex:1">
+        <div class="reco-title">Deploy SMS Lead Follow-Up Automation</div>
+        <div class="reco-body">Improving lead response from "same day" to under 5 minutes with automated SMS can dramatically increase trial bookings and show rates. For a boutique studio prioritizing trial conversion, speed-to-lead is one of the highest-leverage improvements available. RevAgentic can set up and activate this system in 1-2 weeks.</div>
+        <div class="reco-tags">
+          <span class="tag upside-med">$1,000–$2,000/mo</span>
+          <span class="tag effort-low">Low (Days)</span>
+          <span class="tag platform-setup">Platform Setup</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">5</div>
+      <div style="flex:1">
+        <div class="reco-title">Create a Tiered Pricing & Upsell Architecture</div>
+        <div class="reco-body">Boutique studios have strong upside in revenue per member through premium tiers and add-ons. Introducing a structured offer stack with a clearly articulated value ladder allows T Mont Fitness to increase average member value without acquiring new leads. RevAgentic can develop and test this offer structure within 30 days.</div>
+        <div class="reco-tags">
+          <span class="tag upside-med">$1,000–$2,000/mo</span>
+          <span class="tag effort-low">Low (Days)</span>
+          <span class="tag strategy-consult">Strategy Consultation</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <div>
+      <div class="cta-title">Ready to close the revenue gap?</div>
+      <div class="cta-body">Schedule a 30-minute Strategy Session with Bill Colbert to walk through your roadmap, answer questions, and determine the right engagement to get started. No commitment required.</div>
+    </div>
+    <a class="cta-btn" href="https://calendar.app.google/iJiE85Tamv3zvbyW9">Book a Strategy Session →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="report-footer">
+    <div class="footer-wordmark">revagentic<span>.ai</span></div>
+    <div>© 2026 RevAgentic · bill@revagentic.ai · Confidential</div>
+  </div>
+
+</div>
+
+<button onclick="window.print()"
+  style="position:fixed;bottom:24px;right:24px;background:#6d28d9;color:white;
+         font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12px;
+         padding:10px 18px;border-radius:8px;border:none;cursor:pointer;
+         letter-spacing:0.02em;z-index:999;">
+  ↓ Save as PDF
+</button>
+
+</body>
+</html>
