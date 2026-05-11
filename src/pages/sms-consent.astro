@@ -1,106 +1,76 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
+<Layout title="SMS Account Notifications Opt-In | RevAgentic" description="Consent to receive account update notifications from RevAgentic (Agentic Revenue Lab LLC).">
+<nav class="border-b border-brand-border bg-white px-6 py-4">
+  <div class="max-w-4xl mx-auto">
+    <span class="font-display font-bold text-brand-navy">revagentic<span class="text-brand-purple">.ai</span></span>
+  </div>
+</nav>
+<main class="max-w-2xl mx-auto px-6 py-16">
 
-<Layout
-  title="SMS Consent & Opt-In | RevAgentic"
-  description="How RevAgentic collects consent to send SMS messages to gym and fitness operators."
->
-  <nav class="border-b border-brand-border bg-white px-6 py-4">
-    <div class="max-w-4xl mx-auto">
-      <span class="font-display font-bold text-brand-navy">revagentic<span class="text-brand-purple">.ai</span></span>
+  <div class="bg-brand-bg border border-brand-border rounded-2xl p-8 mb-10">
+    <p class="text-xs font-mono text-brand-muted uppercase tracking-widest mb-2">Message Sender</p>
+    <h1 class="font-display font-bold text-3xl text-brand-navy mb-1">RevAgentic</h1>
+    <p class="text-brand-muted font-body text-sm">Agentic Revenue Lab LLC &nbsp;·&nbsp; hello@revagentic.ai &nbsp;·&nbsp; Chicago, IL</p>
+  </div>
+
+  <h2 class="font-display font-bold text-2xl text-brand-navy mb-4">Account Notifications Opt-In</h2>
+  <p class="text-brand-muted font-body leading-relaxed mb-8">
+    RevAgentic (Agentic Revenue Lab LLC) sends account update notifications to gym and fitness business operators who submit a Revenue Systems Diagnostic request on revagentic.ai. Before any message is sent, the operator is shown the following opt-in at the point of form submission:
+  </p>
+
+  <div class="border-2 border-brand-purple rounded-2xl p-8 mb-10">
+    <p class="font-display font-semibold text-brand-navy mb-4 text-sm uppercase tracking-wide">Opt-In — As Shown to Users at Point of Submission</p>
+    <div class="bg-white border border-brand-border rounded-xl p-6 mb-4">
+      <label class="flex items-start gap-3">
+        <div class="w-5 h-5 mt-0.5 border-2 border-brand-purple rounded flex items-center justify-center flex-shrink-0 bg-brand-purple">
+          <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+        </div>
+        <span class="text-brand-muted font-body text-sm leading-relaxed">
+          I agree to receive account update notifications from <strong>RevAgentic (Agentic Revenue Lab LLC)</strong> at the phone number provided. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to opt out at any time. Reply <strong>HELP</strong> for help. See <a href="/privacy" class="text-brand-purple underline">Privacy Policy</a> and <a href="/terms" class="text-brand-purple underline">Terms</a>.
+        </span>
+      </label>
     </div>
-  </nav>
+    <p class="text-xs text-brand-muted font-body">This checkbox is required before the diagnostic form can be submitted. Consent is never a condition of purchase.</p>
+  </div>
 
-  <main class="max-w-4xl mx-auto px-6 py-16">
-    <h1 class="font-display font-bold text-4xl text-brand-navy mb-4">SMS Messaging Consent</h1>
-    <p class="text-brand-muted font-body text-lg mb-12 leading-relaxed">
-      This page describes how Agentic Revenue Lab LLC (operating as RevAgentic) collects consent to send SMS messages, and what recipients can expect.
-    </p>
+  <div class="mb-10">
+    <h3 class="font-display font-semibold text-xl text-brand-navy mb-4">Account Notifications You Will Receive</h3>
+    <ul class="space-y-3">
+      <li class="flex items-start gap-3 text-brand-muted font-body text-sm leading-relaxed">
+        <span class="text-brand-purple font-bold mt-0.5">→</span>
+        A notification that your Revenue Systems Diagnostic report is ready for review
+      </li>
+      <li class="flex items-start gap-3 text-brand-muted font-body text-sm leading-relaxed">
+        <span class="text-brand-purple font-bold mt-0.5">→</span>
+        Account status updates related to your submitted diagnostic request
+      </li>
+    </ul>
+  </div>
 
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">How You Opt In</h2>
-      <p class="text-brand-muted font-body leading-relaxed mb-4">
-        When you submit our Revenue Systems Diagnostic form or any contact form on revagentic.ai, you may provide your mobile phone number. By providing your number and checking the SMS consent checkbox on the form, you agree to receive SMS messages from RevAgentic (Agentic Revenue Lab LLC) related to your diagnostic results, follow-up communications, and information about our services.
-      </p>
-      <div class="bg-brand-bg border border-brand-border rounded-xl p-6 mb-4">
-        <p class="font-display font-semibold text-brand-navy mb-2">Example opt-in language shown at point of collection:</p>
-        <p class="text-brand-muted font-body text-sm italic leading-relaxed">
-          "By providing your phone number and checking this box, you agree to receive SMS messages from RevAgentic (Agentic Revenue Lab LLC) about your diagnostic results and follow-up information. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out at any time. Reply HELP for help."
-        </p>
-      </div>
-      <p class="text-brand-muted font-body text-sm leading-relaxed">
-        Consent is never required as a condition of purchase. You may opt out at any time.
-      </p>
-    </section>
+  <div class="mb-10">
+    <h3 class="font-display font-semibold text-xl text-brand-navy mb-4">How to Opt Out</h3>
+    <p class="text-brand-muted font-body leading-relaxed">Reply <strong>STOP</strong> to any message to unsubscribe immediately. Reply <strong>START</strong> to resubscribe. Reply <strong>HELP</strong> or email <a href="mailto:hello@revagentic.ai" class="text-brand-purple hover:underline">hello@revagentic.ai</a> for assistance.</p>
+  </div>
 
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">What Messages You Will Receive</h2>
-      <ul class="space-y-3">
-        <li class="flex items-start gap-3 text-brand-muted font-body text-sm leading-relaxed">
-          <span class="text-brand-purple mt-0.5 font-bold">→</span>
-          Your Revenue Systems Diagnostic results and report
-        </li>
-        <li class="flex items-start gap-3 text-brand-muted font-body text-sm leading-relaxed">
-          <span class="text-brand-purple mt-0.5 font-bold">→</span>
-          Follow-up communications related to your inquiry
-        </li>
-        <li class="flex items-start gap-3 text-brand-muted font-body text-sm leading-relaxed">
-          <span class="text-brand-purple mt-0.5 font-bold">→</span>
-          Information about RevAgentic services relevant to your business
-        </li>
-        <li class="flex items-start gap-3 text-brand-muted font-body text-sm leading-relaxed">
-          <span class="text-brand-purple mt-0.5 font-bold">→</span>
-          Appointment reminders and scheduling confirmations
-        </li>
-      </ul>
-    </section>
+  <div class="mb-10">
+    <h3 class="font-display font-semibold text-xl text-brand-navy mb-4">SMS Number</h3>
+    <p class="text-brand-muted font-body leading-relaxed">Account notifications are sent from <strong>+1 (855) 905-5409</strong>, operated by Agentic Revenue Lab LLC. Standard message and data rates may apply.</p>
+  </div>
 
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">Message Frequency and Rates</h2>
-      <p class="text-brand-muted font-body leading-relaxed">
-        Message frequency varies based on your inquiry and engagement. Standard message and data rates may apply depending on your carrier and plan.
-      </p>
-    </section>
+  <div class="mb-10">
+    <h3 class="font-display font-semibold text-xl text-brand-navy mb-4">Privacy</h3>
+    <p class="text-brand-muted font-body leading-relaxed">Your phone number will never be sold or shared with third parties. See our <a href="/privacy" class="text-brand-purple hover:underline">Privacy Policy</a> and <a href="/terms" class="text-brand-purple hover:underline">Terms of Service</a>.</p>
+  </div>
 
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">How to Opt Out</h2>
-      <p class="text-brand-muted font-body leading-relaxed mb-4">
-        Reply <strong>STOP</strong> to any message to unsubscribe. You will receive a confirmation and no further messages will be sent. Reply <strong>START</strong> to resubscribe.
-      </p>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">Help</h2>
-      <p class="text-brand-muted font-body leading-relaxed">
-        Reply <strong>HELP</strong> to any message, or email <a href="mailto:hello@revagentic.ai" class="text-brand-purple hover:underline">hello@revagentic.ai</a>.
-      </p>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">Our SMS Number</h2>
-      <p class="text-brand-muted font-body leading-relaxed">
-        SMS messages from RevAgentic are sent from <strong>+1 (855) 905-5409</strong>, a toll-free number operated by Agentic Revenue Lab LLC.
-      </p>
-    </section>
-
-    <section class="mb-12">
-      <h2 class="font-display font-semibold text-2xl text-brand-navy mb-4">Privacy</h2>
-      <p class="text-brand-muted font-body leading-relaxed">
-        Your phone number will never be sold or shared with third parties for marketing. See our <a href="/privacy" class="text-brand-purple hover:underline">Privacy Policy</a> and <a href="/terms" class="text-brand-purple hover:underline">Terms of Service</a> for full details.
-      </p>
-    </section>
-
-    <div class="border-t border-brand-border pt-8">
-      <p class="text-brand-muted font-body text-sm">
-        Operated by <strong>Agentic Revenue Lab LLC</strong> d/b/a RevAgentic · hello@revagentic.ai · Chicago, IL
-      </p>
-    </div>
-  </main>
-
-  <footer class="border-t border-brand-border px-6 py-8 bg-white mt-16">
-    <div class="max-w-4xl mx-auto text-brand-muted text-sm">
-      <p>© 2026 RevAgentic. All rights reserved. RevAgentic is a service of Agentic Revenue Lab LLC.</p>
-    </div>
-  </footer>
+  <div class="border-t border-brand-border pt-8">
+    <p class="text-brand-muted font-body text-sm"><strong>Agentic Revenue Lab LLC</strong> d/b/a RevAgentic &nbsp;·&nbsp; hello@revagentic.ai &nbsp;·&nbsp; Chicago, IL</p>
+  </div>
+</main>
+<footer class="border-t border-brand-border px-6 py-8 bg-white mt-16">
+  <div class="max-w-4xl mx-auto text-brand-muted text-sm">
+    <p>© 2026 RevAgentic. All rights reserved. RevAgentic is a service of Agentic Revenue Lab LLC.</p>
+  </div>
+</footer>
 </Layout>
